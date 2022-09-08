@@ -137,18 +137,15 @@ const Hamburger = () => {
   useEffect(() => {
     hamburgerMenu.current.addEventListener('wheel', e => e.preventDefault())
     hamburgerMenu.current.addEventListener('touchmove', e => e.preventDefault())
-  })
+  }, [])
 
   const hamburgerClickHandler = () => {
     hamburgerCheck.current.click()
-    console.log('hi')
   }
 
   useEffect(() => {
-    hamburgerClicker.current.addEventListener('click', hamburgerClickHandler())
-
-    // hamburgerClicker.current.removeEventListener('click')
-  })
+    hamburgerClicker.current.addEventListener('click', hamburgerClickHandler)
+  }, [])
 
   return (
     <HamburgerContainer>
