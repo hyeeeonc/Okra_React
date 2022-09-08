@@ -26,12 +26,16 @@ const HamburgerClicker = styled.div`
   top: 0;
   right: 0;
   width: 52px;
-  height: 48px;
-  z-index: 100;
+  height: 50px;
+  z-index: 101;
 `
 
 const HamburgerCheck = styled.input`
   display: none;
+
+  position: flxed;
+  top: -1px;
+  right: -1px;
 
   :checked ~ .menu {
     width: calc(235px);
@@ -98,7 +102,7 @@ const HamburgerCheckIconSticks = styled.span`
 
 const HamburgerMenu = styled.div`
   position: fixed;
-  top: 48px;
+  top: 50px;
   right: 0;
   height: 100%;
   width: 0;
@@ -129,25 +133,31 @@ const Hamburger = () => {
   const hamburgerClicker = useRef(null)
   const hamburgerCheck = useRef(null)
   const hamburgerMenu = useRef(null)
+
   useEffect(() => {
     hamburgerMenu.current.addEventListener('wheel', e => e.preventDefault())
     hamburgerMenu.current.addEventListener('touchmove', e => e.preventDefault())
   })
 
+  const hamburgerClickHandler = () => {
+    hamburgerCheck.current.click()
+    console.log('hi')
+  }
+
   useEffect(() => {
-    hamburgerClicker.current.addEventListener('click', () => {
-      hamburgerCheck.current.click()
-    })
-  }, [])
+    hamburgerClicker.current.addEventListener('click', hamburgerClickHandler())
+
+    // hamburgerClicker.current.removeEventListener('click')
+  })
 
   return (
     <HamburgerContainer>
-      <HamburgerClicker ref={hamburgerClicker} />
       <HamburgerCheck
         ref={hamburgerCheck}
         id="hamburgerCheck"
         type="checkbox"
       />
+      <HamburgerClicker ref={hamburgerClicker} />
       <HamburgerCheckIcon className="burger-icon" htmlFor="hamburgerCheck">
         <HamburgerCheckIconSticks className="burger-sticks" />
       </HamburgerCheckIcon>

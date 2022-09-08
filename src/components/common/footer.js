@@ -39,14 +39,18 @@ const FooterSNSIconContainer = styled.div`
 `
 
 const FooterSNSIconYoutube = styled.img`
+  margin: auto auto;
   width: 36px;
 `
 
 const FooterSNSIconFB = styled.img`
+  margin: auto auto;
   width: 32px;
 `
 
 const FooterSNSIconInsta = styled.img`
+  margin: 0 auto;
+  padding-bottom: 1px;
   width: 28px;
 `
 
