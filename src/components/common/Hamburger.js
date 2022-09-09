@@ -36,8 +36,8 @@ const HamburgerCheck = styled.input`
   display: none;
 
   position: flxed;
-  top: -1px;
-  right: -1px;
+  top: 0px;
+  right: 0px;
 
   :checked ~ .menu {
     width: calc(235px);
@@ -104,12 +104,14 @@ const HamburgerCheckIconSticks = styled.span`
 
 const HamburgerMenu = styled.div`
   position: fixed;
-  top: 50px;
+  top: 0;
   right: 0;
+  padding-top: 50px;
+
   height: 100%;
   width: 0;
   transition: width 0.5s ease;
-  z-index: 60;
+  z-index: 30;
   background-color: #4d4d4d;
   opacity: 1;
 `;
@@ -132,7 +134,7 @@ const HamburgerMenuButtonContainer = styled.div`
   width: 140px;
   flex: none;
 
-  margin-top: 15px;
+  margin-top: 10px;
 `;
 
 const HamburgerMenuButtonYoutube = styled.img`
@@ -156,6 +158,11 @@ const HamburgerMenuLink = styled.div`
 
   margin-top: 48px;
   margin-bottom: 40px;
+
+  a {
+    text-decoration: none;
+    color: white;
+  }
 `;
 
 const HamburgerMenuItemsSubMenuContainer = styled.div`
@@ -217,22 +224,33 @@ const Hamburger = ({ audioPlay, audioPause }) => {
         <HamburgerMenuItemsWrapper>
           <HamburgerMenuItems>We&nbsp;Are&nbsp;OKRA</HamburgerMenuItems>
           <HamburgerMenuItemsSubMenuContainer>
-            <HamburgerMenuItemsSubMenus to="/">OKRA</HamburgerMenuItemsSubMenus>
-
-            <HamburgerMenuItemsSubMenus to="/">
-              Business
+            <HamburgerMenuItemsSubMenus
+              onClick={() => hamburgerClickHandler()}
+              to="/"
+            >
+              OKRA
             </HamburgerMenuItemsSubMenus>
 
-            <HamburgerMenuItemsSubMenus to="/">
+            <HamburgerMenuItemsSubMenus
+              onClick={() => hamburgerClickHandler()}
+              to="/"
+            >
               Partners
             </HamburgerMenuItemsSubMenus>
 
-            <HamburgerMenuItemsSubMenus to="/">
+            <HamburgerMenuItemsSubMenus
+              onClick={() => hamburgerClickHandler()}
+              to="/"
+            >
               Contact&nbsp;Us
             </HamburgerMenuItemsSubMenus>
           </HamburgerMenuItemsSubMenuContainer>
 
-          <HamburgerMenuLink to="/">EVENTS</HamburgerMenuLink>
+          <HamburgerMenuLink>
+            <Link onClick={() => hamburgerClickHandler()} to="/events">
+              EVENTS
+            </Link>
+          </HamburgerMenuLink>
 
           <HamburgerMenuItems>BRANDS</HamburgerMenuItems>
 

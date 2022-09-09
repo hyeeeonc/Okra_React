@@ -1,7 +1,11 @@
 import { Route, Routes } from "../node_modules/react-router-dom/index";
 import React, { useEffect } from "react";
 import styled from "styled-components";
+
 import IndexPage from "./pages/IndexPage";
+import PostPage from "./pages/PostPage";
+import PostListPage from "./pages/PostListPage";
+
 import Header from "./components/common/Header";
 import Footer from "./components/common/footer";
 import AudioPlayer from "./components/common/Audio";
@@ -44,12 +48,10 @@ function App() {
 
   const audioPlay = () => {
     audio.play();
-    console.log("재생");
   };
 
   const audioPause = () => {
     audio.pause();
-    console.log("멈춤");
   };
 
   return (
@@ -57,6 +59,8 @@ function App() {
       <Header audioPlay={audioPlay} audioPause={audioPause} />
       <Routes>
         <Route path="/" element={<IndexPage />} />
+        <Route path="/events" element={<PostListPage />} />
+        <Route path=":postId" element={<PostPage />} />
       </Routes>
       <Footer />
       <AudioContainer>
