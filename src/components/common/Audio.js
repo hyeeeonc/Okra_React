@@ -1,11 +1,15 @@
-import React, { useEffect } from 'react'
-import styled from 'styled-components'
+import React, { useEffect } from "react";
+import styled from "styled-components";
 
-const AudioBlock = styled.div``
+const AudioBlock = styled.div`
+  flex: none;
+`;
 
 const AudioPlayButton = styled.input`
   height: 2.6rem;
   margin-right: 1rem;
+
+  cursor: pointer;
 
   @media (max-width: 1320px) {
     height: 2rem;
@@ -18,12 +22,15 @@ const AudioPlayButton = styled.input`
   @media (max-width: 767px) {
     height: 21px;
     margin-left: 1.2rem;
+    margin-right: 0;
   }
-`
+`;
 
 const AudioPauseButton = styled.input`
   height: 2.6rem;
   margin-right: 1rem;
+
+  cursor: pointer;
 
   @media (max-width: 1320px) {
     height: 2rem;
@@ -36,30 +43,11 @@ const AudioPauseButton = styled.input`
   @media (max-width: 767px) {
     height: 21px;
     margin-left: 0.7rem;
+    margin-right: 2.8rem;
   }
-`
-const AudioPlayer = () => {
-  let audio = new Audio('./assets/audio/OkraBG.mp3')
+`;
 
-  useEffect(() => {
-    audio.addEventListener(
-      'ended',
-      function () {
-        this.currentTime = 0
-        this.play()
-      },
-      false,
-    )
-  })
-
-  const audioPlay = () => {
-    audio.play()
-  }
-
-  const audioPause = () => {
-    audio.pause()
-  }
-
+const AudioPlayer = ({ audioPlay, audioPause }) => {
   return (
     <AudioBlock>
       <AudioPlayButton
@@ -75,7 +63,7 @@ const AudioPlayer = () => {
         value="pause"
       />
     </AudioBlock>
-  )
-}
+  );
+};
 
-export default AudioPlayer
+export default AudioPlayer;

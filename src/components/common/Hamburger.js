@@ -1,6 +1,8 @@
-import React, { useEffect, useRef } from 'react'
-import styled from 'styled-components'
-import { Link } from 'react-router-dom'
+import React, { useEffect, useRef } from "react";
+import styled from "styled-components";
+import { Link } from "react-router-dom";
+
+import AudioPlayer from "./Audio";
 
 const HamburgerContainer = styled.div`
   position: fixed;
@@ -17,7 +19,7 @@ const HamburgerContainer = styled.div`
   @media (min-width: 768px) {
     display: none;
   }
-`
+`;
 
 const HamburgerClicker = styled.div`
   position: fixed;
@@ -28,7 +30,7 @@ const HamburgerClicker = styled.div`
   width: 52px;
   height: 50px;
   z-index: 101;
-`
+`;
 
 const HamburgerCheck = styled.input`
   display: none;
@@ -57,7 +59,7 @@ const HamburgerCheck = styled.input`
   :checked ~ .burger-icon:not(.steps) .burger-sticks:after {
     top: 0;
   }
-`
+`;
 
 const HamburgerCheckIcon = styled.label`
   cursor: pointer;
@@ -66,7 +68,7 @@ const HamburgerCheckIcon = styled.label`
   user-select: none;
   width: auto;
   margin: 0;
-`
+`;
 
 const HamburgerCheckIconSticks = styled.span`
   background: white;
@@ -79,7 +81,7 @@ const HamburgerCheckIconSticks = styled.span`
 
   :before {
     background: white;
-    content: '';
+    content: "";
     height: 100%;
     position: absolute;
     transition: all 0.2s ease-out;
@@ -90,7 +92,7 @@ const HamburgerCheckIconSticks = styled.span`
 
   :after {
     background: white;
-    content: '';
+    content: "";
     height: 100%;
     position: absolute;
     transition: all 0.2s ease-out;
@@ -98,7 +100,7 @@ const HamburgerCheckIconSticks = styled.span`
     border-radius: 2px;
     top: -6px;
   }
-`
+`;
 
 const HamburgerMenu = styled.div`
   position: fixed;
@@ -110,42 +112,89 @@ const HamburgerMenu = styled.div`
   z-index: 60;
   background-color: #4d4d4d;
   opacity: 1;
-`
+`;
 
 const HamburgerMenuItemsWrapper = styled.div`
-  margin: 25px 0 0 20px;
-`
-
-const HamburgerMenuItems = styled.div`
-  font-family: 'Pretendard';
+  font-family: "MICEGothic";
   font-style: normal;
   font-weight: 700;
-  font-size: 20px;
-  line-height: 150%;
-  letter-spacing: -0.02em;
-  margin-bottom: 20px;
-  cursor: pointer;
-
+  font-size: 1p6x;
   color: white;
-`
 
-const Hamburger = () => {
-  const hamburgerClicker = useRef(null)
-  const hamburgerCheck = useRef(null)
-  const hamburgerMenu = useRef(null)
+  padding: 40px 0 0 20px;
+`;
+
+const HamburgerMenuButtonContainer = styled.div`
+  display: flex;
+  align-items: center;
+  flex-wrap: nowrap;
+
+  width: 140px;
+  flex: none;
+
+  margin-top: 15px;
+`;
+
+const HamburgerMenuButtonYoutube = styled.img`
+  width: 36px;
+`;
+
+const HamburgerMenuButtonFB = styled.img`
+  width: 33px;
+  margin 0 8px;
+`;
+
+const HamburgerMenuButtonInsta = styled.img`
+  width: 27px;
+`;
+
+const HamburgerMenuItems = styled.div``;
+
+const HamburgerMenuLink = styled.div`
+  text-decoration: none;
+  color: white;
+
+  margin-top: 48px;
+  margin-bottom: 40px;
+`;
+
+const HamburgerMenuItemsSubMenuContainer = styled.div`
+  display: flex;
+  flex-direction: column;
+`;
+
+const HamburgerMenuItemsSubMenus = styled(Link)`
+  margin-top: 2rem;
+  margin-left: 0.9rem;
+
+  text-decoration: none;
+
+  font-family: "MICEGothic";
+  font-style: normal;
+  font-weight: 400;
+  font-size: 16px;
+  color: white;
+`;
+
+const Hamburger = ({ audioPlay, audioPause }) => {
+  const hamburgerClicker = useRef(null);
+  const hamburgerCheck = useRef(null);
+  const hamburgerMenu = useRef(null);
 
   useEffect(() => {
-    hamburgerMenu.current.addEventListener('wheel', e => e.preventDefault())
-    hamburgerMenu.current.addEventListener('touchmove', e => e.preventDefault())
-  }, [])
+    hamburgerMenu.current.addEventListener("wheel", (e) => e.preventDefault());
+    hamburgerMenu.current.addEventListener("touchmove", (e) =>
+      e.preventDefault()
+    );
+  }, []);
 
   const hamburgerClickHandler = () => {
-    hamburgerCheck.current.click()
-  }
+    hamburgerCheck.current.click();
+  };
 
   useEffect(() => {
-    hamburgerClicker.current.addEventListener('click', hamburgerClickHandler)
-  }, [])
+    hamburgerClicker.current.addEventListener("click", hamburgerClickHandler);
+  }, []);
 
   return (
     <HamburgerContainer>
@@ -159,13 +208,46 @@ const Hamburger = () => {
         <HamburgerCheckIconSticks className="burger-sticks" />
       </HamburgerCheckIcon>
       <HamburgerMenu ref={hamburgerMenu} className="menu">
+        <HamburgerMenuButtonContainer>
+          <AudioPlayer audioPlay={audioPlay} audioPause={audioPause} />
+          <HamburgerMenuButtonYoutube src="./images/footer/youtube.png" />
+          <HamburgerMenuButtonFB src="./images/footer/FB.png" />
+          <HamburgerMenuButtonInsta src="./images/footer/insta.png" />
+        </HamburgerMenuButtonContainer>
         <HamburgerMenuItemsWrapper>
-          <HamburgerMenuItems>MINTING</HamburgerMenuItems>
-          <HamburgerMenuItems>CONTACT</HamburgerMenuItems>
+          <HamburgerMenuItems>We&nbsp;Are&nbsp;OKRA</HamburgerMenuItems>
+          <HamburgerMenuItemsSubMenuContainer>
+            <HamburgerMenuItemsSubMenus to="/">OKRA</HamburgerMenuItemsSubMenus>
+
+            <HamburgerMenuItemsSubMenus to="/">
+              Business
+            </HamburgerMenuItemsSubMenus>
+
+            <HamburgerMenuItemsSubMenus to="/">
+              Partners
+            </HamburgerMenuItemsSubMenus>
+
+            <HamburgerMenuItemsSubMenus to="/">
+              Contact&nbsp;Us
+            </HamburgerMenuItemsSubMenus>
+          </HamburgerMenuItemsSubMenuContainer>
+
+          <HamburgerMenuLink to="/">EVENTS</HamburgerMenuLink>
+
+          <HamburgerMenuItems>BRANDS</HamburgerMenuItems>
+
+          <HamburgerMenuItemsSubMenuContainer>
+            <HamburgerMenuItemsSubMenus to="/">
+              Magicdurg
+            </HamburgerMenuItemsSubMenus>
+            <HamburgerMenuItemsSubMenus to="/">
+              MyCherryClub
+            </HamburgerMenuItemsSubMenus>
+          </HamburgerMenuItemsSubMenuContainer>
         </HamburgerMenuItemsWrapper>
       </HamburgerMenu>
     </HamburgerContainer>
-  )
-}
+  );
+};
 
-export default Hamburger
+export default Hamburger;
