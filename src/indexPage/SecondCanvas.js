@@ -84,7 +84,7 @@ const SecondCanvas = ({ windowSize, sceneInfo, setSceneInfo, yOffset }) => {
         setIsSecondSceneDisplayBlock(false);
       }
     });
-  }, []);
+  }, [canvasRef]);
 
   // useEffect(() => {}, [yOffset]);
 

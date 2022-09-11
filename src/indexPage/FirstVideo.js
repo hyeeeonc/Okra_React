@@ -54,7 +54,6 @@ const FirstVideo = ({
       let videoOpacityPercent = Math.round(
         (1 - (percentSetter - 25) / 60) * 100
       );
-      console.log(videoOpacityPercent);
       // videoSection.current.style.opacity = `${videoOpacityPercent}%`;
       setVideoOpacity(videoOpacityPercent);
     };
