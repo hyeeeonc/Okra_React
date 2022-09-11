@@ -218,7 +218,7 @@ const Hamburger = ({ audioPlay, audioPause }) => {
         <HamburgerMenuButtonContainer>
           <AudioPlayer audioPlay={audioPlay} audioPause={audioPause} />
           <HamburgerMenuButtonYoutube src="./images/footer/youtube.png" />
-          <HamburgerMenuButtonFB src="./images/footer/FB.png" />
+          <HamburgerMenuButtonFB src="./images/footer/fb.png" />
           <HamburgerMenuButtonInsta src="./images/footer/insta.png" />
         </HamburgerMenuButtonContainer>
         <HamburgerMenuItemsWrapper>
