@@ -99,12 +99,12 @@ const IndexPage = () => {
         imageSize={imageSize}
         yOffset={yOffset}
       />
-      <SecondCanvas
+      {/* <SecondCanvas
         windowSize={windowSize}
         sceneInfo={sceneInfo}
         setSceneInfo={setSceneInfo}
         yOffset={yOffset}
-      />
+      /> */}
     </IndexBlock>
   );
 };
