@@ -1,5 +1,5 @@
-import React, { useRef, useState, useEffect } from "react";
-import styled from "styled-components";
+import React, { useRef, useState, useEffect } from 'react'
+import styled from 'styled-components'
 
 const VideoBlock = styled.section`
   width: 100vw;
@@ -18,30 +18,39 @@ const VideoBlock = styled.section`
       transform: translate(0px, -20px);
     }
   }
-`;
+`
 
-const FirstVideo = ({
-  windowSize,
-  imageSize,
-  sceneInfo,
-  setSceneInfo,
-  yOffset,
-}) => {
-  const [videoOpacity, setVideoOpacity] = useState(150);
-  const videoSection = useRef(null);
+const FirstVideo = ({ windowSize, sceneInfo, setSceneInfo }) => {
+  const [videoOpacity, setVideoOpacity] = useState(150)
+  const [imageSize, setimageSize] = useState(false)
+  const videoSection = useRef(null)
 
   /**
    * SceneInfo에서 [0]인 first Scene의 height 세팅하는 함수
    */
   const firstSceneHeightHandler = () => {
-    let copy = sceneInfo;
-    copy[0].scrollHeight = videoSection.current.clientHeight;
-    setSceneInfo(copy);
-  };
+    let copy = sceneInfo
+    copy[0].scrollHeight = videoSection.current.clientHeight
+    setSceneInfo(copy)
+  }
+
+  /**
+   * video section이 화면 가득 차도록 width/height 중 100%가 될 요소 세팅하는 함수
+   * imageSize = 메인 비디오 컨테이너 사이즈 결정
+
+   */
+  useEffect(() => {
+    const IndexBackgroundImageSizeRation = windowSize.width / windowSize.height
+    if (IndexBackgroundImageSizeRation > 1.59) {
+      setimageSize(true)
+    } else {
+      setimageSize(false)
+    }
+  }, [windowSize])
 
   useEffect(() => {
-    firstSceneHeightHandler();
-  }, [windowSize]);
+    firstSceneHeightHandler()
+  }, [sceneInfo])
 
   /**
    * First Scene의 Interection 처리를 위하여 스크롤 양을 %로 계산
@@ -49,16 +58,15 @@ const FirstVideo = ({
   useEffect(() => {
     const scrollFunction = () => {
       let percentSetter = Math.round(
-        (window.pageYOffset / sceneInfo[0].scrollHeight) * 100
-      );
+        (window.pageYOffset / sceneInfo[0].scrollHeight) * 100,
+      )
       let videoOpacityPercent = Math.round(
-        (1 - (percentSetter - 25) / 60) * 100
-      );
-      // videoSection.current.style.opacity = `${videoOpacityPercent}%`;
-      setVideoOpacity(videoOpacityPercent);
-    };
-    window.addEventListener("scroll", scrollFunction);
-  }, []);
+        (1 - (percentSetter - 25) / 60) * 100,
+      )
+      setVideoOpacity(videoOpacityPercent)
+    }
+    window.addEventListener('scroll', scrollFunction)
+  }, [])
 
   return (
     <VideoBlock
@@ -72,12 +80,12 @@ const FirstVideo = ({
         style={
           imageSize === false
             ? {
-                height: "100vh",
-                width: "auto",
+                height: '100vh',
+                width: 'auto',
               }
             : {
-                width: "100vw",
-                height: "auto",
+                width: '100vw',
+                height: 'auto',
               }
         }
         muted={true}
@@ -92,7 +100,7 @@ const FirstVideo = ({
         Your browser does not support the video tag.
       </video>
     </VideoBlock>
-  );
-};
+  )
+}
 
-export default FirstVideo;
+export default FirstVideo

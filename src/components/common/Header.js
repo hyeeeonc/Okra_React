@@ -1,7 +1,7 @@
-import React, { useState } from "react";
-import styled from "styled-components";
-import { Link } from "react-router-dom";
-import Hamburger from "./Hamburger";
+import React, { useState } from 'react'
+import styled from 'styled-components'
+import { Link } from 'react-router-dom'
+import Hamburger from './Hamburger'
 
 const HeaderBlock = styled.header`
   position: fixed;
@@ -21,7 +21,7 @@ const HeaderBlock = styled.header`
   @media (max-width: 767px) {
     height: 50px;
   }
-`;
+`
 
 const HeaderNav = styled.nav`
   width: 1320px;
@@ -38,7 +38,7 @@ const HeaderNav = styled.nav`
   @media (max-width: 1024px) {
     width: 100vw;
   }
-`;
+`
 
 const HeaderLogoContainer = styled.div`
   margin-right: auto;
@@ -65,7 +65,7 @@ const HeaderLogoContainer = styled.div`
       margin-left: 0.5rem;
     }
   }
-`;
+`
 
 const HeaderNavItemsContainer = styled.div`
   height: 100%;
@@ -75,7 +75,7 @@ const HeaderNavItemsContainer = styled.div`
   display: flex;
   justify-item; space-between;
   align-items: center;
-`;
+`
 
 const HeaderNavItems = styled.div`
   position: relative;
@@ -107,7 +107,7 @@ const HeaderNavItems = styled.div`
   @media (max-width: 767px) {
     display: none;
   }
-`;
+`
 
 const HeaderNavItemsNormal = styled.div`
   width: 100%;
@@ -125,7 +125,7 @@ const HeaderNavItemsNormal = styled.div`
   @media (max-width: 1024px) {
     font-size: 1rem;
   }
-`;
+`
 
 const HeaderNavItemsLink = styled(Link)`
   width: 100%;
@@ -143,12 +143,12 @@ const HeaderNavItemsLink = styled(Link)`
   @media (max-width: 1024px) {
     font-size: 1rem;
   }
-`;
+`
 
 const HeaderNavItemsSpan = styled.span`
   :after {
     display: block;
-    content: "";
+    content: '';
     border-bottom: solid 2px white;
     transform: scaleX(0);
     transition: transform 150ms ease-in-out;
@@ -164,7 +164,7 @@ const HeaderNavItemsSpan = styled.span`
     text-decoration: none;
     color: white;
   }
-`;
+`
 
 const HeaderNavItemsSubMenuContainer = styled.div`
   position: absolute;
@@ -194,7 +194,7 @@ const HeaderNavItemsSubMenuContainer = styled.div`
     font-size: 1rem;
     top: 70px;
   }
-`;
+`
 
 const HeaderNavItemsSubMenuItems = styled(Link)`
   width: 100%;
@@ -203,12 +203,12 @@ const HeaderNavItemsSubMenuItems = styled(Link)`
 
   text-decoration: none;
   color: white;
-`;
+`
 
 const HeaderNavItemsSubMenuItemsSpan = styled.span`
   :after {
     display: block;
-    content: "";
+    content: '';
     border-bottom: solid 2px white;
     transform: scaleX(0);
     transition: transform 150ms ease-in-out;
@@ -219,7 +219,7 @@ const HeaderNavItemsSubMenuItemsSpan = styled.span`
     transform: scaleX(1);
     transform-origin: 0% 100%;
   }
-`;
+`
 
 const HeaderSpacer = styled.div`
   width: 100%;
@@ -232,7 +232,7 @@ const HeaderSpacer = styled.div`
   @media (max-width: 767px) {
     height: 50px;
   }
-`;
+`
 
 const Header = ({ audioPlay, audioPause }) => {
   return (
@@ -285,11 +285,11 @@ const Header = ({ audioPlay, audioPause }) => {
             </HeaderNavItems>
 
             <HeaderNavItems>
-              <HeaderNavItemsLink to="/">
+              <HeaderNavItemsNormal>
                 <HeaderNavItemsSpan>
                   <Link to="/events">EVENTS</Link>
                 </HeaderNavItemsSpan>
-              </HeaderNavItemsLink>
+              </HeaderNavItemsNormal>
             </HeaderNavItems>
 
             <HeaderNavItems>
@@ -306,7 +306,7 @@ const Header = ({ audioPlay, audioPause }) => {
       </HeaderBlock>
       <HeaderSpacer />
     </>
-  );
-};
+  )
+}
 
-export default Header;
+export default Header
