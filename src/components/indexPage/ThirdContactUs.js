@@ -9,7 +9,7 @@ const ContactUsBlock = styled.div`
   justify-content: center;
   align-items: center;
   @media (max-width: 1024px) {
-    height: 1100px;
+    height: 1200px;
   }
 `
 

@@ -1,14 +1,15 @@
-import { Route, Routes } from "../node_modules/react-router-dom/index";
-import React, { useEffect } from "react";
-import styled from "styled-components";
+import { Route, Routes } from '../node_modules/react-router-dom/index'
+import React, { useEffect } from 'react'
+import styled from 'styled-components'
 
-import IndexPage from "./pages/IndexPage";
-import PostPage from "./pages/PostPage";
-import PostListPage from "./pages/PostListPage";
+import IndexPage from './pages/IndexPage'
+import PartnerPage from './pages/partnerPage'
+import PostPage from './pages/PostPage'
+import PostListPage from './pages/PostListPage'
 
-import Header from "./components/common/Header";
-import Footer from "./components/common/footer";
-import AudioPlayer from "./components/common/Audio";
+import Header from './components/common/Header'
+import Footer from './components/common/footer'
+import AudioPlayer from './components/common/Audio'
 
 const AudioContainer = styled.div`
   position: fixed;
@@ -27,38 +28,39 @@ const AudioContainer = styled.div`
   @media (max-width: 767px) {
     display: none;
   }
-`;
+`
 
 function App() {
   /**
    * Background Music Setter
    */
-  let audio = new Audio("./assets/audio/OkraBG.mp3");
+  let audio = new Audio('./assets/audio/OkraBG.mp3')
 
   useEffect(() => {
     audio.addEventListener(
-      "ended",
+      'ended',
       function () {
-        this.currentTime = 0;
-        this.play();
+        this.currentTime = 0
+        this.play()
       },
-      false
-    );
-  });
+      false,
+    )
+  })
 
   const audioPlay = () => {
-    audio.play();
-  };
+    audio.play()
+  }
 
   const audioPause = () => {
-    audio.pause();
-  };
+    audio.pause()
+  }
 
   return (
     <>
       <Header audioPlay={audioPlay} audioPause={audioPause} />
       <Routes>
         <Route path="/" element={<IndexPage />} />
+        <Route path="/partner" element={<PartnerPage />} />
         <Route path="/events" element={<PostListPage />} />
         <Route path=":postId" element={<PostPage />} />
       </Routes>
@@ -67,7 +69,7 @@ function App() {
         <AudioPlayer audioPlay={audioPlay} audioPause={audioPause} />
       </AudioContainer>
     </>
-  );
+  )
 }
 
-export default App;
+export default App

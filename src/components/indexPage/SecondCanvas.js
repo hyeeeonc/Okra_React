@@ -161,51 +161,52 @@ const SecondCanvas = ({ windowSize, sceneInfo, setSceneInfo, yOffset }) => {
           .drawImage(videoImageCopy[sequence], 0, 0)
       }
 
+      // second section 전체 display noen/block 관리
       if (percentSetter >= 0 && percentSetter <= 100) {
         setIsSecondSceneDisplayBlock(true)
-
-        // carousel interaction
-        if (percentSetter >= 5 && percentSetter <= 40) {
-          setCarouselOpacity(1)
-          setCarouselTransform(20)
-        } else {
-          setCarouselOpacity(0)
-          setCarouselTransform(-20)
-        }
-
-        //carousel z-index
-        if (percentSetter >= 3 && percentSetter <= 45) {
-          setCarouselZIndex(2)
-        } else {
-          setCarouselZIndex(-1)
-        }
-
-        //partner first(magicdrug) logo interaction
-        if (percentSetter >= 58 && percentSetter <= 92) {
-          setFirstPartnerOpacity(1)
-          setFirstPartnerTransform(20)
-        } else {
-          setFirstPartnerOpacity(0)
-          setFirstPartnerTransform(-20)
-        }
-
-        //partner second(mycherryclub) logo interaction
-        if (percentSetter >= 64 && percentSetter <= 96) {
-          setSecondPartnerOpacity(1)
-          setSecondPartnerTransform(20)
-        } else {
-          setSecondPartnerOpacity(0)
-          setSecondPartnerTransform(-20)
-        }
-
-        //partners z-index
-        if (percentSetter >= 55 && percentSetter <= 98) {
-          setPartnersZIndex(2)
-        } else {
-          setPartnersZIndex(-1)
-        }
       } else {
         setIsSecondSceneDisplayBlock(false)
+      }
+
+      // carousel interaction
+      if (percentSetter >= 5 && percentSetter <= 40) {
+        setCarouselOpacity(1)
+        setCarouselTransform(20)
+      } else {
+        setCarouselOpacity(0)
+        setCarouselTransform(-20)
+      }
+
+      //carousel z-index
+      if (percentSetter >= 3 && percentSetter <= 45) {
+        setCarouselZIndex(2)
+      } else {
+        setCarouselZIndex(-1)
+      }
+
+      //partner first(magicdrug) logo interaction
+      if (percentSetter >= 58 && percentSetter <= 92) {
+        setFirstPartnerOpacity(1)
+        setFirstPartnerTransform(20)
+      } else {
+        setFirstPartnerOpacity(0)
+        setFirstPartnerTransform(-20)
+      }
+
+      //partner second(mycherryclub) logo interaction
+      if (percentSetter >= 64 && percentSetter <= 96) {
+        setSecondPartnerOpacity(1)
+        setSecondPartnerTransform(20)
+      } else {
+        setSecondPartnerOpacity(0)
+        setSecondPartnerTransform(-20)
+      }
+
+      //partners z-index
+      if (percentSetter >= 55 && percentSetter <= 98) {
+        setPartnersZIndex(2)
+      } else {
+        setPartnersZIndex(-1)
       }
     })
   }, [canvasRef])

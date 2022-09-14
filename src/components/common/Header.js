@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React from 'react'
 import styled from 'styled-components'
 import { Link } from 'react-router-dom'
 import Hamburger from './Hamburger'
@@ -127,24 +127,6 @@ const HeaderNavItemsNormal = styled.div`
   }
 `
 
-const HeaderNavItemsLink = styled(Link)`
-  width: 100%;
-  height: 100%;
-  color: white;
-  text-decoration: none;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-
-  @media (max-width: 1320px) {
-    font-size: 1.2rem;
-  }
-
-  @media (max-width: 1024px) {
-    font-size: 1rem;
-  }
-`
-
 const HeaderNavItemsSpan = styled.span`
   :after {
     display: block;
@@ -235,6 +217,13 @@ const HeaderSpacer = styled.div`
 `
 
 const Header = ({ audioPlay, audioPause }) => {
+  const ContactUsMover = () => {
+    setTimeout(function () {
+      document
+        .getElementById('contactUs')
+        .scrollIntoView({ behavior: 'smooth' })
+    }, 1)
+  }
   return (
     <>
       <HeaderBlock>
@@ -270,14 +259,19 @@ const Header = ({ audioPlay, audioPause }) => {
                   </HeaderNavItemsSubMenuItemsSpan>
                 </HeaderNavItemsSubMenuItems>
 
-                <HeaderNavItemsSubMenuItems className="sub-menu-items" to="/">
+                <HeaderNavItemsSubMenuItems
+                  className="sub-menu-items"
+                  to="/partner"
+                >
                   <HeaderNavItemsSubMenuItemsSpan>
                     Partners
                   </HeaderNavItemsSubMenuItemsSpan>
                 </HeaderNavItemsSubMenuItems>
 
                 <HeaderNavItemsSubMenuItems className="sub-menu-items" to="/">
-                  <HeaderNavItemsSubMenuItemsSpan>
+                  <HeaderNavItemsSubMenuItemsSpan
+                    onClick={() => ContactUsMover()}
+                  >
                     Contact US
                   </HeaderNavItemsSubMenuItemsSpan>
                 </HeaderNavItemsSubMenuItems>
