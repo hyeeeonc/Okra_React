@@ -12,10 +12,10 @@ const CarouselBlock = styled.div`
   display: flex;
   justify-content: center;
   align-items: center;
-  transition: opacity 0.3s ease, top 0.3s ease;
+  transition: opacity 0.3s ease, top 0.3s ease, z-index 1s ease;
 
   @media (max-width: 1320px) {
-    margin-left: calc(50vw + 542px - 40rem);
+    margin-left: calc(50vw + 542px - 38rem);
   }
 
   @media (max-width: 1024px) {
@@ -58,7 +58,11 @@ const CarouselRightArrow = styled.div`
   cursor: pointer;
 `
 
-const SecondCarousel = ({ carouselOpacity, carouselTransform }) => {
+const SecondCarousel = ({
+  carouselOpacity,
+  carouselTransform,
+  carouselZIndex,
+}) => {
   const domain = 'api.okraseoul.com'
   const carousel = useRef(null)
   const prevBtn = useRef(null)
@@ -120,9 +124,8 @@ const SecondCarousel = ({ carouselOpacity, carouselTransform }) => {
   return (
     <CarouselBlock
       style={{
-        zIndex: carouselOpacity === 1 ? 2 : -1,
-
         opacity: `${carouselOpacity}`,
+        zIndex: `${carouselZIndex}`,
         top: `calc((100vh - 85px) / 2 + 60px + ${carouselTransform}px)`,
       }}
     >

@@ -56,10 +56,55 @@ const CanvasGradientRight = styled.div`
   );
 `
 
+const CanvasPartnersLogoFirst = styled.img`
+  position: fixed;
+  top: calc(38vh - 20px);
+  width: 25rem;
+  left: calc(50vw - 660px + 20rem);
+  transform: translate(-50%, -50%);
+
+  transition: opacity 0.3s ease, top 0.3s ease;
+  opacity: 0;
+  @media (max-width: 1320px) {
+    left: calc(50vw - 512px + 20rem);
+  }
+
+  @media (max-width: 1024px) {
+    left: calc(50vw);
+  }
+`
+
+const CanvasPartnersLogoSecond = styled.img`
+  position: fixed;
+
+  top: calc(68vh - 20px);
+  width: 12rem;
+  left: calc(50vw - 660px + 20rem);
+  transform: translate(-50%, -50%);
+
+  transition: opacity 0.3s ease, top 0.3s ease;
+  opacity: 0;
+
+  @media (max-width: 1320px) {
+    left: calc(50vw - 512px + 20rem);
+  }
+
+  @media (max-width: 1024px) {
+    left: calc(50vw);
+  }
+`
+
 const SecondCanvas = ({ windowSize, sceneInfo, setSceneInfo, yOffset }) => {
   const [heightRatio, setHeightRatio] = useState(0)
   const [carouselOpacity, setCarouselOpacity] = useState(0)
   const [carouselTransform, setCarouselTransform] = useState(0)
+  const [carouselZIndex, setCarouselZIndex] = useState(-1)
+
+  const [firstPartnerOpacity, setFirstPartnerOpacity] = useState(0)
+  const [firstPartnerTransform, setFirstPartnerTransform] = useState(0)
+  const [secondPartnerOpacity, setSecondPartnerOpacity] = useState(0)
+  const [secondPartnerTransform, setSecondPartnerTransform] = useState(0)
+
   const [isSecondSceneDisplayBlock, setIsSecondSceneDisplayBlock] =
     useState(false)
   const canvasRef = useRef(null)
@@ -117,13 +162,39 @@ const SecondCanvas = ({ windowSize, sceneInfo, setSceneInfo, yOffset }) => {
 
       if (percentSetter >= 0 && percentSetter <= 100) {
         setIsSecondSceneDisplayBlock(true)
-        // carousel interection
-        if (percentSetter >= 5 && percentSetter <= 42) {
+
+        // carousel interaction
+        if (percentSetter >= 5 && percentSetter <= 40) {
           setCarouselOpacity(1)
           setCarouselTransform(20)
         } else {
           setCarouselOpacity(0)
           setCarouselTransform(-20)
+        }
+
+        //carousel z-index
+        if (percentSetter >= 3 && percentSetter <= 45) {
+          setCarouselZIndex(2)
+        } else {
+          setCarouselZIndex(-1)
+        }
+
+        //partner first(magicdrug) logo interaction
+        if (percentSetter >= 52 && percentSetter <= 93) {
+          setFirstPartnerOpacity(1)
+          setFirstPartnerTransform(20)
+        } else {
+          setFirstPartnerOpacity(0)
+          setFirstPartnerTransform(-20)
+        }
+
+        //partner second(mycherryclub) logo interaction
+        if (percentSetter >= 57 && percentSetter <= 95) {
+          setSecondPartnerOpacity(1)
+          setSecondPartnerTransform(20)
+        } else {
+          setSecondPartnerOpacity(0)
+          setSecondPartnerTransform(-20)
         }
       } else {
         setIsSecondSceneDisplayBlock(false)
@@ -158,8 +229,26 @@ const SecondCanvas = ({ windowSize, sceneInfo, setSceneInfo, yOffset }) => {
         <SecondCarousel
           carouselOpacity={carouselOpacity}
           carouselTransform={carouselTransform}
+          carouselZIndex={carouselZIndex}
         />
       </CanvasContainer>
+
+      <CanvasPartnersLogoFirst
+        src="./images/partners/magicdrug.png"
+        alt="MAGICDRUG"
+        style={{
+          opacity: `${firstPartnerOpacity}`,
+          top: `calc(38vh + ${firstPartnerTransform}px)`,
+        }}
+      />
+      <CanvasPartnersLogoSecond
+        src="./images/partners/mycherryclub.png"
+        alt="MyCherryClub"
+        style={{
+          opacity: `${secondPartnerOpacity}`,
+          top: `calc(68vh + ${secondPartnerTransform}px)`,
+        }}
+      />
     </CanvasSectionBlock>
   )
 }
