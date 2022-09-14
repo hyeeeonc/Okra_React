@@ -1,7 +1,9 @@
 import React, { useState, useEffect, useCallback } from 'react'
 import styled from 'styled-components'
+
 import FirstVideo from '../components/indexPage/FirstVideo'
 import SecondCanvas from '../components/indexPage/SecondCanvas'
+import ThirdContactUS from '../components/indexPage/ThirdContactUs'
 
 const IndexBlock = styled.main`
   width: 100%;
@@ -75,6 +77,7 @@ const IndexPage = () => {
         sceneInfo={sceneInfo}
         setSceneInfo={setSceneInfo}
       />
+      <ThirdContactUS />
     </IndexBlock>
   )
 }

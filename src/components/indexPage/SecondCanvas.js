@@ -5,7 +5,6 @@ import SecondCarousel from './SecondCarousel'
 const CanvasSectionBlock = styled.section`
   width: 100vw;
   overflow: hidden;
-  will-change: opacity;
 `
 
 const CanvasContainer = styled.div`
@@ -97,6 +96,7 @@ const CanvasPartnersLogoSecond = styled.img`
 const SecondCanvas = ({ windowSize, sceneInfo, setSceneInfo, yOffset }) => {
   const [heightRatio, setHeightRatio] = useState(0)
   const [carouselOpacity, setCarouselOpacity] = useState(0)
+
   const [carouselTransform, setCarouselTransform] = useState(0)
   const [carouselZIndex, setCarouselZIndex] = useState(-1)
 
@@ -104,6 +104,7 @@ const SecondCanvas = ({ windowSize, sceneInfo, setSceneInfo, yOffset }) => {
   const [firstPartnerTransform, setFirstPartnerTransform] = useState(0)
   const [secondPartnerOpacity, setSecondPartnerOpacity] = useState(0)
   const [secondPartnerTransform, setSecondPartnerTransform] = useState(0)
+  const [partnersZIndex, setPartnersZIndex] = useState(-1)
 
   const [isSecondSceneDisplayBlock, setIsSecondSceneDisplayBlock] =
     useState(false)
@@ -114,7 +115,7 @@ const SecondCanvas = ({ windowSize, sceneInfo, setSceneInfo, yOffset }) => {
    * videoImages array state에 canvas로 컨트롤할 images 할당하는 함수
    */
   const setCanvasImages = () => {
-    const videoImageCount = 456 //인터렉션에 사용되는 images 개수
+    const videoImageCount = 424 //인터렉션에 사용되는 images 개수
     for (let i = 0; i < videoImageCount; i++) {
       const imgElement = new Image()
       imgElement.src = `./images/canvas/${1035 + i}.jpeg`
@@ -151,7 +152,7 @@ const SecondCanvas = ({ windowSize, sceneInfo, setSceneInfo, yOffset }) => {
           100,
       )
 
-      let sequence = Math.round(4.56 * percentSetter)
+      let sequence = Math.round(4.24 * percentSetter)
 
       // Canvas에 Image 할당
       if (videoImageCopy[sequence]) {
@@ -180,7 +181,7 @@ const SecondCanvas = ({ windowSize, sceneInfo, setSceneInfo, yOffset }) => {
         }
 
         //partner first(magicdrug) logo interaction
-        if (percentSetter >= 52 && percentSetter <= 93) {
+        if (percentSetter >= 58 && percentSetter <= 92) {
           setFirstPartnerOpacity(1)
           setFirstPartnerTransform(20)
         } else {
@@ -189,12 +190,19 @@ const SecondCanvas = ({ windowSize, sceneInfo, setSceneInfo, yOffset }) => {
         }
 
         //partner second(mycherryclub) logo interaction
-        if (percentSetter >= 57 && percentSetter <= 95) {
+        if (percentSetter >= 64 && percentSetter <= 96) {
           setSecondPartnerOpacity(1)
           setSecondPartnerTransform(20)
         } else {
           setSecondPartnerOpacity(0)
           setSecondPartnerTransform(-20)
+        }
+
+        //partners z-index
+        if (percentSetter >= 55 && percentSetter <= 98) {
+          setPartnersZIndex(2)
+        } else {
+          setPartnersZIndex(-1)
         }
       } else {
         setIsSecondSceneDisplayBlock(false)
@@ -225,13 +233,12 @@ const SecondCanvas = ({ windowSize, sceneInfo, setSceneInfo, yOffset }) => {
             right: `calc( 50vw - ${heightRatio} * 660px)`,
           }}
         />
-
-        <SecondCarousel
-          carouselOpacity={carouselOpacity}
-          carouselTransform={carouselTransform}
-          carouselZIndex={carouselZIndex}
-        />
       </CanvasContainer>
+      <SecondCarousel
+        carouselOpacity={carouselOpacity}
+        carouselTransform={carouselTransform}
+        carouselZIndex={carouselZIndex}
+      />
 
       <CanvasPartnersLogoFirst
         src="./images/partners/magicdrug.png"
@@ -239,6 +246,7 @@ const SecondCanvas = ({ windowSize, sceneInfo, setSceneInfo, yOffset }) => {
         style={{
           opacity: `${firstPartnerOpacity}`,
           top: `calc(38vh + ${firstPartnerTransform}px)`,
+          zIndex: `${partnersZIndex}`,
         }}
       />
       <CanvasPartnersLogoSecond
@@ -247,6 +255,7 @@ const SecondCanvas = ({ windowSize, sceneInfo, setSceneInfo, yOffset }) => {
         style={{
           opacity: `${secondPartnerOpacity}`,
           top: `calc(68vh + ${secondPartnerTransform}px)`,
+          zIndex: `${partnersZIndex}`,
         }}
       />
     </CanvasSectionBlock>

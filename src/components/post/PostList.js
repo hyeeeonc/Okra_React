@@ -1,9 +1,9 @@
-import styled from "styled-components";
-import MainResponsive from "../common/MainResponsive";
-import Responsive from "../common/Responsive";
-import palette from "../../lib/styles/palette";
-import { Link } from "react-router-dom";
-import { useEffect } from "react";
+import styled from 'styled-components'
+import MainResponsive from '../common/MainResponsive'
+import Responsive from '../common/Responsive'
+import palette from '../../lib/styles/palette'
+import { Link } from 'react-router-dom'
+import { useEffect } from 'react'
 
 const PostListBlock = styled(Responsive)`
   // margin-top: 3rem;
@@ -14,7 +14,7 @@ const PostListBlock = styled(Responsive)`
   justify-content: flex-start;
   padding: initial;
   background-color: #181818;
-`;
+`
 
 const ErrorBlock = styled.div`
   display: flex;
@@ -28,7 +28,8 @@ const ErrorBlock = styled.div`
 
     .logof {
       font-weight: 900;
-      text-shadow: -1px -1px 0 #fff, 1px -1px 0 #fff, -1px 1px 0 #fff, 1px 1px 0 #fff;
+      text-shadow: -1px -1px 0 #fff, 1px -1px 0 #fff, -1px 1px 0 #fff,
+        1px 1px 0 #fff;
     }
 
     .logob {
@@ -36,9 +37,9 @@ const ErrorBlock = styled.div`
       font-style: italic;
     }
   }
-`;
+`
 
-const PostThumbItemBlock = styled.div``;
+const PostThumbItemBlock = styled.div``
 
 const PostItemBlock = styled.div`
   padding-top: 3rem;
@@ -69,6 +70,10 @@ const PostItemBlock = styled.div`
   @media (max-width: 319px) {
     width: 200px;
     margin: 0 calc((100vw - 200px) / 2);
+  }
+
+  a {
+    text-decoration: none;
   }
 
   .thumbnail {
@@ -126,32 +131,45 @@ const PostItemBlock = styled.div`
       color: ${palette.gray[6]};
     }
   }
-`;
+`
 
 const PostItem = ({ post }) => {
-  const { postId, boardId, title, thumbnail, content, addedDate, status, selected, views } = post;
+  const {
+    postId,
+    boardId,
+    title,
+    thumbnail,
+    content,
+    addedDate,
+    status,
+    selected,
+    views,
+  } = post
 
-  let events;
+  let events
 
   const eventSetting = () => {
     if (boardId === 1) {
-      events = "Festival";
+      events = 'Festival'
     }
     if (boardId === 2) {
-      events = "Concerts";
+      events = 'Concerts'
     }
     if (boardId === 3) {
-      events = "Party";
+      events = 'Party'
     }
-    return events;
-  };
-  eventSetting();
+    return events
+  }
+  eventSetting()
 
   // console.log(thumbnail);
   return (
     <PostItemBlock>
       <Link to={`/${postId}`}>
-        <div className="thumbnail" dangerouslySetInnerHTML={{ __html: thumbnail }}></div>
+        <div
+          className="thumbnail"
+          dangerouslySetInnerHTML={{ __html: thumbnail }}
+        ></div>
       </Link>
       <h6>{events}</h6>
 
@@ -161,24 +179,24 @@ const PostItem = ({ post }) => {
 
       {/* <div className="cont">{new Date(addedDate)}</div> */}
     </PostItemBlock>
-  );
-};
+  )
+}
 
 const PostList = ({ posts, loading, error }) => {
   const errChenck = () => {
     if (error) {
       if (error.response.status === 404) {
-        return <ErrorBlock> 존재하지 않는 포스트입니다. </ErrorBlock>;
+        return <ErrorBlock> 존재하지 않는 포스트입니다. </ErrorBlock>
       } else if (error.response.status === 401) {
-        return <ErrorBlock> 권한이 없습니다. </ErrorBlock>;
+        return <ErrorBlock> 권한이 없습니다. </ErrorBlock>
       } else {
-        return <ErrorBlock> Error! </ErrorBlock>;
+        return <ErrorBlock> Error! </ErrorBlock>
       }
     }
-  };
+  }
   useEffect(() => {
-    errChenck();
-  }, []);
+    errChenck()
+  }, [])
 
   if (loading || !posts) {
     return (
@@ -190,20 +208,20 @@ const PostList = ({ posts, loading, error }) => {
           </div>
         </ErrorBlock>
       </MainResponsive>
-    );
+    )
   }
 
   return (
     <PostListBlock>
       {!loading && posts && (
         <>
-          {posts.data.posts.map((post) => (
+          {posts.data.posts.map(post => (
             <PostItem post={post} key={post.postId} />
           ))}
         </>
       )}
     </PostListBlock>
-  );
-};
+  )
+}
 
-export default PostList;
+export default PostList

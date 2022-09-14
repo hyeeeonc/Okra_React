@@ -8,11 +8,11 @@ const CarouselBlock = styled.div`
   margin-left: calc(50vw + 690px - 40rem);
 
   transform: translate(0, -50%);
-  z-index: 10;
+  z-index: -1;
   display: flex;
   justify-content: center;
   align-items: center;
-  transition: opacity 0.3s ease, top 0.3s ease, z-index 1s ease;
+  transition: opacity 0.3s ease, top 0.3s ease;
 
   @media (max-width: 1320px) {
     margin-left: calc(50vw + 542px - 38rem);
@@ -46,7 +46,7 @@ const CarouselLeftArrow = styled.div`
   top: calc(200px - 70px);
 
   left: 0;
-  z-index: 10;
+  z-index: 100;
   cursor: pointer;
 `
 
@@ -54,7 +54,7 @@ const CarouselRightArrow = styled.div`
   position: absolute;
   top: calc(200px - 70px);
   left: 495px;
-  z-index: 10;
+  z-index: 100;
   cursor: pointer;
 `
 
@@ -104,7 +104,8 @@ const SecondCarousel = ({
         container.ontransitionend = () => reorganizeEl(selectedBtn)
 
         container.style.transitionDuration = '300ms'
-        container.style.transform = `translateX(-410px)`
+        container.style.transform =
+          direction === 1 ? `translateX(410px)` : `translateX(-410px)`
       }
 
       function reorganizeEl(selectedBtn) {

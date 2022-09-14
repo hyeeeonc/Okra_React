@@ -33,6 +33,18 @@ body {
   scrollbar-width: none; /* Firefox */
 }
 
+/* ios 자체 디자인 해제 */
+input,
+textarea,
+button {
+  appearance: none;
+  -moz-appearance: none;
+  -webkit-appearance: none;
+  border-radius: 0;
+  -webkit-border-radius: 0;
+  -moz-border-radius: 0;
+}
+
 html,
 body,
 div,
