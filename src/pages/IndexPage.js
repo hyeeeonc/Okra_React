@@ -1,12 +1,15 @@
 import React, { useState, useEffect, useCallback } from 'react'
 import styled from 'styled-components'
+import { Pc, Mobile } from '../hooks/useMediaQuery'
 
 import FirstVideo from '../components/indexPage/FirstVideo'
 import SecondCanvas from '../components/indexPage/SecondCanvas'
 import ThirdContactUS from '../components/indexPage/ThirdContactUs'
+import MobileIndex from '../components/indexPage/MobileIndex'
 
 const IndexBlock = styled.main`
   width: 100%;
+  font-family: 'MICEGothic';
 
   overflow-x: hidden;
 `
@@ -67,17 +70,22 @@ const IndexPage = () => {
 
   return (
     <IndexBlock>
-      <FirstVideo
-        windowSize={windowSize}
-        sceneInfo={sceneInfo}
-        setSceneInfo={setSceneInfo}
-      />
-      <SecondCanvas
-        windowSize={windowSize}
-        sceneInfo={sceneInfo}
-        setSceneInfo={setSceneInfo}
-      />
-      <ThirdContactUS />
+      <Pc>
+        <FirstVideo
+          windowSize={windowSize}
+          sceneInfo={sceneInfo}
+          setSceneInfo={setSceneInfo}
+        />
+        <SecondCanvas
+          windowSize={windowSize}
+          sceneInfo={sceneInfo}
+          setSceneInfo={setSceneInfo}
+        />
+        <ThirdContactUS />
+      </Pc>
+      <Mobile>
+        <MobileIndex />
+      </Mobile>
     </IndexBlock>
   )
 }

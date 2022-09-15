@@ -1,5 +1,5 @@
-import React from "react";
-import styled from "styled-components";
+import React from 'react'
+import styled from 'styled-components'
 
 const FooterBlock = styled.footer`
   display: flex;
@@ -10,12 +10,14 @@ const FooterBlock = styled.footer`
   width: 100vw;
   background-color: #181818;
   z-index: 10;
+
+  font-family: 'MICEGothic';
   color: white;
 
   @media (max-width: 767px) {
     height: 200px;
   }
-`;
+`
 
 const FooterLogoContainer = styled.div`
   margin-top: 60px;
@@ -23,7 +25,7 @@ const FooterLogoContainer = styled.div`
   @media (max-width: 767px) {
     display: none;
   }
-`;
+`
 
 const FooterSNSIconContainer = styled.div`
   margin-top: 38px;
@@ -32,30 +34,30 @@ const FooterSNSIconContainer = styled.div`
   display: flex;
   justify-content: space-between;
   align-items: center;
-`;
+`
 
 const FooterSNSIconYoutube = styled.img`
   margin: auto auto;
   width: 36px;
-`;
+`
 
 const FooterSNSIconFB = styled.img`
   margin: auto auto;
   width: 32px;
-`;
+`
 
 const FooterSNSIconInsta = styled.img`
   margin: 0 auto;
   padding-bottom: 1px;
   width: 28px;
-`;
+`
 
 const FooterCopyright = styled.div`
   margin-top: 95px;
   font-size: 1rem;
   color: white;
   letter-spacing: -0.6px;
-`;
+`
 
 const Footer = () => {
   return (
@@ -85,7 +87,7 @@ const Footer = () => {
         copyright 2022. OKRASEOUL all right reserve
       </FooterCopyright>
     </FooterBlock>
-  );
-};
+  )
+}
 
-export default Footer;
+export default Footer

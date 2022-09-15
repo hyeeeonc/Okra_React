@@ -236,7 +236,7 @@ const SecondCanvas = ({ windowSize, sceneInfo, setSceneInfo, yOffset }) => {
         />
         <CanvasGradientRight
           style={{
-            right: `calc( 50vw - ${heightRatio} * 660px)`,
+            left: `calc( 50vw + ${heightRatio} * 660px - 150px)`,
           }}
         />
       </CanvasContainer>

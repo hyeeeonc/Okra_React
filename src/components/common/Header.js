@@ -14,12 +14,15 @@ const HeaderBlock = styled.header`
   background-color: #181818;
   color: #fff;
 
+  font-family: 'MICEGothic';
+
   @media (max-width: 1024px) {
     height: 70px;
   }
 
   @media (max-width: 767px) {
-    height: 50px;
+    top: -1px;
+    height: 51px;
   }
 `
 

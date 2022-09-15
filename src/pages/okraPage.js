@@ -7,9 +7,7 @@ const OkraBlock = styled.main`
 `
 
 const OkraPage = () => {
-  return(
-
-  )
+  return <OkraBlock></OkraBlock>
 }
 
 export default OkraPage

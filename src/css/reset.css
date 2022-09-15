@@ -36,6 +36,7 @@ body {
 /* ios 자체 디자인 해제 */
 input,
 textarea,
+select,
 button {
   appearance: none;
   -moz-appearance: none;

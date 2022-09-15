@@ -103,14 +103,14 @@ const ContactUsFormButton = styled.button`
   border-radius: 5px 7px 7px 7px;
   opacity: 1;
   border: none;
+
   font-size: 1.1rem;
   font-family: MICEGothic;
+  color: #181818;
   cursor: pointer;
 `
 
 const ThirdContactUS = () => {
-  const [touchPos, setToutchPos] = useState({ x: 0, y: 0 })
-
   return (
     <ContactUsBlock id="contactUs">
       <ContactUsContentsContainer>
