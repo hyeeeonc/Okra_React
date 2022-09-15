@@ -1,4 +1,4 @@
-import React, { useState, useEffect, useRef } from 'react'
+import React, { useState, useEffect, useRef, useCallback } from 'react'
 import styled from 'styled-components'
 import SecondCarousel from './SecondCarousel'
 
@@ -144,74 +144,76 @@ const SecondCanvas = ({ windowSize, sceneInfo, setSceneInfo, yOffset }) => {
    * Second Scene의 Interection 처리를 위하여 스크롤 양을 %로 계산
    * 성능상 이유로 percentSetter는 여기서 state가 관여하지 않도록 세팅.(state화 하면 계산속도 현저히 떨어짐)
    */
-  useEffect(() => {
-    if (canvasRef.current !== null) {
-      window.addEventListener('scroll', () => {
-        let clientYOffset =
-          ((window.pageYOffset - sceneInfo[0].scrollHeight) /
-            (sceneInfo[1].scrollHeight - window.innerHeight)) *
-          100
 
-        let percentSetter = Math.round(clientYOffset)
+  const scrollHandler = useCallback(() => {
+    let clientYOffset =
+      ((window.pageYOffset - sceneInfo[0].scrollHeight) /
+        (sceneInfo[1].scrollHeight - window.innerHeight)) *
+      100
 
-        let sequence = Math.round(4.24 * percentSetter)
+    let percentSetter = Math.round(clientYOffset)
 
-        // Canvas에 Image 할당
-        if (videoImageCopy[sequence]) {
-          canvasRef.current
-            .getContext('2d')
-            .drawImage(videoImageCopy[sequence], 0, 0)
-        }
+    let sequence = Math.round(4.24 * percentSetter)
 
-        // second section 전체 display noen/block 관리
-        if (percentSetter >= 0 && percentSetter <= 100) {
-          setIsSecondSceneDisplayBlock(true)
-        } else {
-          setIsSecondSceneDisplayBlock(false)
-        }
-
-        // carousel interaction
-        if (percentSetter >= 5 && percentSetter <= 40) {
-          setCarouselOpacity(1)
-          setCarouselTransform(20)
-        } else {
-          setCarouselOpacity(0)
-          setCarouselTransform(-20)
-        }
-
-        //carousel z-index
-        if (percentSetter >= 3 && percentSetter <= 45) {
-          setCarouselZIndex(2)
-        } else {
-          setCarouselZIndex(-1)
-        }
-
-        //partner first(magicdrug) logo interaction
-        if (percentSetter >= 58 && percentSetter <= 92) {
-          setFirstPartnerOpacity(1)
-          setFirstPartnerTransform(20)
-        } else {
-          setFirstPartnerOpacity(0)
-          setFirstPartnerTransform(-20)
-        }
-
-        //partner second(mycherryclub) logo interaction
-        if (percentSetter >= 64 && percentSetter <= 96) {
-          setSecondPartnerOpacity(1)
-          setSecondPartnerTransform(20)
-        } else {
-          setSecondPartnerOpacity(0)
-          setSecondPartnerTransform(-20)
-        }
-
-        //partners z-index
-        if (percentSetter >= 55 && percentSetter <= 98) {
-          setPartnersZIndex(2)
-        } else {
-          setPartnersZIndex(-1)
-        }
-      })
+    // Canvas에 Image 할당
+    if (videoImageCopy[sequence]) {
+      canvasRef.current
+        ?.getContext('2d')
+        ?.drawImage(videoImageCopy[sequence], 0, 0)
     }
+
+    // second section 전체 display noen/block 관리
+    if (percentSetter >= 0 && percentSetter <= 100) {
+      setIsSecondSceneDisplayBlock(true)
+    } else {
+      setIsSecondSceneDisplayBlock(false)
+    }
+
+    // carousel interaction
+    if (percentSetter >= 5 && percentSetter <= 40) {
+      setCarouselOpacity(1)
+      setCarouselTransform(20)
+    } else {
+      setCarouselOpacity(0)
+      setCarouselTransform(-20)
+    }
+
+    //carousel z-index
+    if (percentSetter >= 3 && percentSetter <= 45) {
+      setCarouselZIndex(2)
+    } else {
+      setCarouselZIndex(-1)
+    }
+
+    //partner first(magicdrug) logo interaction
+    if (percentSetter >= 58 && percentSetter <= 92) {
+      setFirstPartnerOpacity(1)
+      setFirstPartnerTransform(20)
+    } else {
+      setFirstPartnerOpacity(0)
+      setFirstPartnerTransform(-20)
+    }
+
+    //partner second(mycherryclub) logo interaction
+    if (percentSetter >= 64 && percentSetter <= 96) {
+      setSecondPartnerOpacity(1)
+      setSecondPartnerTransform(20)
+    } else {
+      setSecondPartnerOpacity(0)
+      setSecondPartnerTransform(-20)
+    }
+
+    //partners z-index
+    if (percentSetter >= 55 && percentSetter <= 98) {
+      setPartnersZIndex(2)
+    } else {
+      setPartnersZIndex(-1)
+    }
+  }, [canvasRef])
+
+  useEffect(() => {
+    window.addEventListener('scroll', scrollHandler)
+    return () => window.removeEventListener('scroll', scrollHandler)
   }, [])
 
   return (

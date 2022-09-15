@@ -1,4 +1,5 @@
 import React, { useState, useEffect, useRef } from 'react'
+import { Link } from 'react-router-dom'
 import styled from 'styled-components'
 import '../../css/carousel.css'
 
@@ -67,26 +68,17 @@ const SecondCarousel = ({
   const carousel = useRef(null)
   const prevBtn = useRef(null)
   const nextBtn = useRef(null)
-  const container = document.querySelector('.thumbnail-container')
-
   const [touchPos, setToutchPos] = useState({ x: 0, y: 0 })
 
+  const [thumbnails, setThumbnails] = useState([])
+
   useEffect(() => {
-    const carouselSetting = async () => {
+    const setCarousel = async () => {
       const res = await fetch(`https://${domain}/api/v1/thumbnails`)
-      let thumbnails = await res.json()
-      console.log()
-
-      thumbnails = [].concat(
-        thumbnails[thumbnails.length - 1],
-        thumbnails.slice(0, thumbnails.length - 1),
+      const temp = await res.json()
+      setThumbnails(
+        [].concat(temp[temp.length - 1], temp.slice(0, thumbnails.length - 1)),
       )
-
-      thumbnails.forEach(t => {
-        carousel.current.innerHTML += `<a href='/${t.postId}'><div class="thumbnail-cell" style="cursor:pointer;"> 
-      ${t.thumbnail}
-      </div></a>`
-      })
       ;(function addEvent() {
         prevBtn.current.addEventListener(
           'click',
@@ -99,8 +91,8 @@ const SecondCarousel = ({
       })()
     }
 
-    carouselSetting()
-  })
+    setCarousel()
+  }, [])
 
   /**
    * 이전/다음 판단하는 함수
@@ -108,10 +100,10 @@ const SecondCarousel = ({
    */
   function translateContainer(direction) {
     const selectedBtn = direction === 1 ? 'prev' : 'next'
-    container.ontransitionend = () => reorganizeEl(selectedBtn)
+    carousel.current.ontransitionend = () => reorganizeEl(selectedBtn)
 
-    container.style.transitionDuration = '300ms'
-    container.style.transform =
+    carousel.current.style.transitionDuration = '300ms'
+    carousel.current.style.transform =
       direction === 1 ? `translateX(410px)` : `translateX(-410px)`
   }
 
@@ -120,13 +112,13 @@ const SecondCarousel = ({
    * @param {*} selectedBtn 이전/이후 방향 판단하여 캐러셀 카드 생성
    */
   function reorganizeEl(selectedBtn) {
-    container.removeAttribute('style')
+    carousel.current.removeAttribute('style')
     selectedBtn === 'prev'
-      ? container.insertBefore(
-          container.lastElementChild,
-          container.firstElementChild,
+      ? carousel.current.insertBefore(
+          carousel.current.lastElementChild,
+          carousel.current.firstElementChild,
         )
-      : carousel.current.appendChild(container.firstElementChild)
+      : carousel.current.appendChild(carousel.current.firstElementChild)
   }
 
   /**
@@ -189,10 +181,17 @@ const SecondCarousel = ({
       </CarouselRightArrow>
 
       <CarouselWindow onTouchStart={touchStart} onTouchEnd={touchEnd}>
-        <CarouselContainer
-          className="thumbnail-container"
-          ref={carousel}
-        ></CarouselContainer>
+        <CarouselContainer ref={carousel}>
+          {thumbnails.map(t => (
+            <Link to={`/${t.postId}`}>
+              <div
+                className="thumbnail-cell"
+                style={{ cursor: 'pointer' }}
+                dangerouslySetInnerHTML={{ __html: t.thumbnail }}
+              ></div>
+            </Link>
+          ))}
+        </CarouselContainer>
       </CarouselWindow>
     </CarouselBlock>
   )
