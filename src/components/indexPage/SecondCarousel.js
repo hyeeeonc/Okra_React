@@ -26,7 +26,7 @@ const CarouselBlock = styled.article`
 `
 
 const MobileCarouselBlock = styled.article`
-  margin-top: 70px;
+  margin-top: 120px;
   position: relative;
 `
 

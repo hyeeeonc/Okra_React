@@ -40,7 +40,7 @@ const MobilePartnerSection = styled.section`
   flex-wrap: nowrap;
   justify-content: space-around;
   align-items: center;
-  margin-top: 70px;
+  margin-top: 120px;
 `
 
 const MobilePartnerFirstImg = styled.img`
@@ -61,7 +61,7 @@ const MobileContactSection = styled.section`
 `
 
 const MobileContactButton = styled.div`
-  margin-top: 3rem;
+  margin-top: 100px;
   margin-bottom: 3rem;
   width: 158px;
   height: 52px;
