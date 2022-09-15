@@ -69,6 +69,8 @@ const PostHeadThumbContainer = styled.div`
 `
 
 const PostContainer = styled.div`
+  font-family: 'MICEGothic';
+
   font-size: 1rem;
   padding-right: 20px;
   color: ${palette.gray[8]};
