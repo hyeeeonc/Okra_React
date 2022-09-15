@@ -1,4 +1,4 @@
-import styled from "styled-components";
+import styled from 'styled-components'
 
 // const EditorBlock = styled.div`
 //   @media;
@@ -6,7 +6,7 @@ import styled from "styled-components";
 
 const MainResponsiveBlock = styled.div`
   margin: 3rem auto;
-  padding-bottom: 8rem;
+  padding-bottom: 3rem;
   background-color: white;
   border-radius: 10px;
 
@@ -35,10 +35,10 @@ const MainResponsiveBlock = styled.div`
   @media (max-width: 786px) {
     width: 100%;
   }
-`;
+`
 
 const MainResponsive = ({ children, ...rest }) => {
-  return <MainResponsiveBlock {...rest}>{children}</MainResponsiveBlock>;
-};
+  return <MainResponsiveBlock {...rest}>{children}</MainResponsiveBlock>
+}
 
-export default MainResponsive;
+export default MainResponsive

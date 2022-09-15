@@ -3,6 +3,7 @@ import React, { useEffect } from 'react'
 import styled from 'styled-components'
 
 import IndexPage from './pages/IndexPage'
+import OkraPage from './pages/okraPage'
 import PartnerPage from './pages/partnerPage'
 import ContactPage from './pages/ContactPage'
 import PostPage from './pages/PostPage'
@@ -61,7 +62,8 @@ function App() {
       <Header audioPlay={audioPlay} audioPause={audioPause} />
       <Routes>
         <Route path="/" element={<IndexPage />} />
-        <Route path="/partner" element={<PartnerPage />} />
+        <Route path="/okra" element={<OkraPage />} />
+        {/* <Route path="/partner" element={<PartnerPage />} /> */}
         <Route path="/contact" element={<ContactPage />} />
         <Route path="/events" element={<PostListPage />} />
         <Route path=":postId" element={<PostPage />} />

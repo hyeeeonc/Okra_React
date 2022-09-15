@@ -1,4 +1,4 @@
-import styled from "styled-components";
+import styled from 'styled-components'
 
 const ResponsiveBlock = styled.div`
   width: 1320px;
@@ -9,19 +9,19 @@ const ResponsiveBlock = styled.div`
   }
 
   @media (max-width: 1024px) {
-    width: 786px;
+    width: 768px;
   }
 
-  @media (max-width: 786px) {
+  @media (max-width: 767px) {
     padding-left: 1rem;
     padding-right: 1rem;
 
     width: 100%;
   }
-`;
+`
 
 const Responsive = ({ children, ...rest }) => {
-  return <ResponsiveBlock {...rest}>{children}</ResponsiveBlock>;
-};
+  return <ResponsiveBlock {...rest}>{children}</ResponsiveBlock>
+}
 
-export default Responsive;
+export default Responsive

@@ -183,6 +183,19 @@ const HamburgerMenuItemsSubMenus = styled(Link)`
   color: white;
 `
 
+const HamburgerMenuItemsSubMenusAncher = styled.a`
+  margin-top: 2rem;
+  margin-left: 0.9rem;
+
+  text-decoration: none;
+
+  font-family: 'MICEGothic';
+  font-style: normal;
+  font-weight: 400;
+  font-size: 16px;
+  color: white;
+`
+
 const Hamburger = ({ audioPlay, audioPause }) => {
   const hamburgerClicker = useRef(null)
   const hamburgerCheck = useRef(null)
@@ -224,17 +237,17 @@ const Hamburger = ({ audioPlay, audioPause }) => {
           <HamburgerMenuItemsSubMenuContainer>
             <HamburgerMenuItemsSubMenus
               onClick={() => hamburgerClickHandler()}
-              to="/"
+              to="/okra"
             >
               OKRA
             </HamburgerMenuItemsSubMenus>
 
-            <HamburgerMenuItemsSubMenus
+            {/* <HamburgerMenuItemsSubMenus
               onClick={() => hamburgerClickHandler()}
               to="/partner"
             >
               Partners
-            </HamburgerMenuItemsSubMenus>
+            </HamburgerMenuItemsSubMenus> */}
 
             <HamburgerMenuItemsSubMenus
               onClick={() => hamburgerClickHandler()}
@@ -253,12 +266,12 @@ const Hamburger = ({ audioPlay, audioPause }) => {
           <HamburgerMenuItems>BRANDS</HamburgerMenuItems>
 
           <HamburgerMenuItemsSubMenuContainer>
-            <HamburgerMenuItemsSubMenus to="/">
+            <HamburgerMenuItemsSubMenusAncher href="https://www.magicdrug.net/">
               Magicdurg
-            </HamburgerMenuItemsSubMenus>
-            <HamburgerMenuItemsSubMenus to="/">
+            </HamburgerMenuItemsSubMenusAncher>
+            <HamburgerMenuItemsSubMenusAncher href="https://www.instagram.com/mycherryclub/?igshid=YmMyMTA2M2Y=">
               MyCherryClub
-            </HamburgerMenuItemsSubMenus>
+            </HamburgerMenuItemsSubMenusAncher>
           </HamburgerMenuItemsSubMenuContainer>
         </HamburgerMenuItemsWrapper>
       </HamburgerMenu>

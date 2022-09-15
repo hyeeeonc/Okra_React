@@ -39,17 +39,47 @@ const ErrorBlock = styled.div`
   }
 `
 
-const PostThumbItemBlock = styled.div``
+const PostItemThumbnail = styled.div`
+  // position: relative;
+  max-width: 320px;
+  text-align: center;
 
-const PostItemBlock = styled.div`
-  padding-top: 3rem;
-  padding-bottom: 3rem;
-  width: 235px;
-  margin-right: 47.5px;
-  margin-left: 47.5px;
-  display: hidden;
+  transition: 0.5s ease;
+
+  :hover {
+    filter: hue-rotate(20deg);
+  }
+
+  img {
+    max-width: 100%;
+  }
 
   @media (max-width: 1320px) {
+    max-width: 235px;
+    margin: 0 47, 5px;
+  }
+
+  @media (max-width: 767px) {
+    max-width: 200px;
+    margin: 0 auto;
+  }
+
+  @media (max-width: 500px) {
+    max-width: calc(100vw - 60px);
+  }
+`
+
+const PostItemBlock = styled.div`
+  font-family: 'MICEGothic';
+
+
+  padding-top: 3rem;
+  padding-bottom: 3rem;
+  width: 320px;
+    margin: 0 60px;
+
+  @media (max-width: 1320px) {
+    width: 235px;
     margin: 0 53.16px;
   }
 
@@ -63,43 +93,26 @@ const PostItemBlock = styled.div`
   }
 
   @media (max-width: 500px) {
-    width: 150px;
-    margin: 0 calc((100vw - 300px) / 4);
+    width: calc(100vw - 60px);
+    margin: 0 30px;
   }
+  //   width: 150px;
+  //   margin: 0 calc((100vw - 300px) / 4);
+  // }
 
-  @media (max-width: 319px) {
-    width: 200px;
-    margin: 0 calc((100vw - 200px) / 2);
-  }
+  // @media (max-width: 319px) {
+  //   width: 200px;
+  //   margin: 0 calc((100vw - 200px) / 2);
+  // }
 
   a {
     text-decoration: none;
   }
 
-  .thumbnail {
-    max-width: 235px;
-    text-align: center;
-    img {
-      max-width: 100%;
-    }
-    @media (max-width: 767px) {
-      max-width: 200px;
-      margin: 0 auto;
-    }
-
-    @media (max-width: 500px) {
-      max-width: 150px;
-    }
-
-    @media (max-width: 319px) {
-      max-width: 200px;
-    }
-
-  }
 
   h6 {
     font-size: 1rem;
-    color: #af8bea;
+    color: #FBB03B;
     margin: 1.4rem 0 1.4rem 0;
 
     @media (max-width: 767px) {
@@ -118,12 +131,12 @@ const PostItemBlock = styled.div`
     margin-top: 0;
     color: white;
 
-        @media (max-width: 767px) {
+    @media (max-width: 767px) {
       font-size: 1.6rem;
     }
 
     @media (max-width: 500px) {
-      1rem;
+      font-size: 1.6rem;
     }
 
 
@@ -166,10 +179,9 @@ const PostItem = ({ post }) => {
   return (
     <PostItemBlock>
       <Link to={`/${postId}`}>
-        <div
-          className="thumbnail"
+        <PostItemThumbnail
           dangerouslySetInnerHTML={{ __html: thumbnail }}
-        ></div>
+        ></PostItemThumbnail>
       </Link>
       <h6>{events}</h6>
 

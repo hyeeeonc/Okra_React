@@ -5,12 +5,11 @@ const AudioBlock = styled.div`
   flex: none;
 `
 
-const AudioPlayButton = styled.input`
+const AudioPlayButton = styled.img`
   height: 2.6rem;
   margin-right: 1rem;
-
+  filter: invert(20%);
   cursor: pointer;
-  mix-blend-mode: difference;
 
   @media (max-width: 1320px) {
     height: 2rem;
@@ -27,12 +26,11 @@ const AudioPlayButton = styled.input`
   }
 `
 
-const AudioPauseButton = styled.input`
+const AudioPauseButton = styled.img`
   height: 2.6rem;
   margin-right: 1rem;
-
+  filter: invert(20%);
   cursor: pointer;
-  mix-blend-mode: difference;
 
   @media (max-width: 1320px) {
     height: 2rem;
@@ -53,16 +51,12 @@ const AudioPlayer = ({ audioPlay, audioPause }) => {
   return (
     <AudioBlock>
       <AudioPlayButton
-        type="image"
         src="./images/audio/play.png"
         onClick={() => audioPlay()}
-        value="play"
       />
       <AudioPauseButton
-        type="image"
         src="./images/audio/pause.png"
         onClick={() => audioPause()}
-        value="pause"
       />
     </AudioBlock>
   )

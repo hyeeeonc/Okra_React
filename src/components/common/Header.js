@@ -89,7 +89,7 @@ const HeaderNavItems = styled.div`
   align-items: center;
 
   :hover .sub-menu {
-    height: 180px;
+    height: 120px;
     opacity: 1;
   }
 
@@ -190,6 +190,15 @@ const HeaderNavItemsSubMenuItems = styled(Link)`
   color: white;
 `
 
+const HeaderNavItemsSubMenuItemsAncher = styled.a`
+  width: 100%;
+  height: 60px;
+  display: none;
+
+  text-decoration: none;
+  color: white;
+`
+
 const HeaderNavItemsSubMenuItemsSpan = styled.span`
   :after {
     display: block;
@@ -256,13 +265,16 @@ const Header = ({ audioPlay, audioPause }) => {
                 <HeaderNavItemsSpan>We Are OKRA</HeaderNavItemsSpan>
               </HeaderNavItemsNormal>
               <HeaderNavItemsSubMenuContainer className="sub-menu">
-                <HeaderNavItemsSubMenuItems className="sub-menu-items" to="/">
+                <HeaderNavItemsSubMenuItems
+                  className="sub-menu-items"
+                  to="/okra"
+                >
                   <HeaderNavItemsSubMenuItemsSpan>
                     OKRA
                   </HeaderNavItemsSubMenuItemsSpan>
                 </HeaderNavItemsSubMenuItems>
 
-                <HeaderNavItemsSubMenuItems
+                {/* <HeaderNavItemsSubMenuItems
                   className="sub-menu-items"
                   to="/partner"
                 >
@@ -270,7 +282,7 @@ const Header = ({ audioPlay, audioPause }) => {
                     Partners
                   </HeaderNavItemsSubMenuItemsSpan>
                 </HeaderNavItemsSubMenuItems>
-
+ */}
                 <HeaderNavItemsSubMenuItems className="sub-menu-items" to="/">
                   <HeaderNavItemsSubMenuItemsSpan
                     onClick={() => ContactUsMover()}
@@ -293,7 +305,27 @@ const Header = ({ audioPlay, audioPause }) => {
               <HeaderNavItemsNormal>
                 <HeaderNavItemsSpan>BRANDS</HeaderNavItemsSpan>
               </HeaderNavItemsNormal>
-              <HeaderNavItemsSubMenuContainer className="sub-menu"></HeaderNavItemsSubMenuContainer>
+              <HeaderNavItemsSubMenuContainer className="sub-menu">
+                <HeaderNavItemsSubMenuItemsAncher
+                  className="sub-menu-items"
+                  target="_blank"
+                  href="https://www.magicdrug.net/"
+                >
+                  <HeaderNavItemsSubMenuItemsSpan>
+                    Magicdrug
+                  </HeaderNavItemsSubMenuItemsSpan>
+                </HeaderNavItemsSubMenuItemsAncher>
+
+                <HeaderNavItemsSubMenuItemsAncher
+                  className="sub-menu-items"
+                  target="_blank"
+                  href="https://www.instagram.com/mycherryclub/?igshid=YmMyMTA2M2Y="
+                >
+                  <HeaderNavItemsSubMenuItemsSpan>
+                    MyCherryClub
+                  </HeaderNavItemsSubMenuItemsSpan>
+                </HeaderNavItemsSubMenuItemsAncher>
+              </HeaderNavItemsSubMenuContainer>
             </HeaderNavItems>
           </HeaderNavItemsContainer>
         </HeaderNav>
