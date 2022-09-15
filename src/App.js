@@ -4,6 +4,7 @@ import styled from 'styled-components'
 
 import IndexPage from './pages/IndexPage'
 import PartnerPage from './pages/partnerPage'
+import ContactPage from './pages/ContactPage'
 import PostPage from './pages/PostPage'
 import PostListPage from './pages/PostListPage'
 
@@ -61,6 +62,7 @@ function App() {
       <Routes>
         <Route path="/" element={<IndexPage />} />
         <Route path="/partner" element={<PartnerPage />} />
+        <Route path="/contact" element={<ContactPage />} />
         <Route path="/events" element={<PostListPage />} />
         <Route path=":postId" element={<PostPage />} />
       </Routes>

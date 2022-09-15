@@ -238,7 +238,7 @@ const Hamburger = ({ audioPlay, audioPause }) => {
 
             <HamburgerMenuItemsSubMenus
               onClick={() => hamburgerClickHandler()}
-              to="/"
+              to="/contact"
             >
               Contact&nbsp;Us
             </HamburgerMenuItemsSubMenus>

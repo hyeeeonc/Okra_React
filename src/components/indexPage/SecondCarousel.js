@@ -170,20 +170,26 @@ const SecondCarousel = ({
       })
 
       mobileCarousel.current.addEventListener('touchend', e => {
-        curPos = curPos + (e.changedTouches[0].pageX - startPos)
+        let delta = e.changedTouches[0].pageX - startPos
+        mobileCarousel.current.style.transitionDuration = '300ms'
+        curPos = curPos + delta
+
+        if (e.changedTouches[0].pageX - startPos > 0) {
+          curPos = curPos + delta / 2
+          mobileCarousel.current.style.left = `${curPos}px`
+        } else if (e.changedTouches[0].pageX - startPos < 0) {
+          curPos = curPos + delta / 2
+          mobileCarousel.current.style.left = `${curPos}px`
+        }
 
         if (curPos > 0) {
           curPos = 0
           mobileCarousel.current.style.left = `0px`
-          mobileCarousel.current.style.transitionDuration = '300ms'
         } else if (curPos < -screenWidth) {
           curPos = -screenWidth
 
           mobileCarousel.current.style.left = `${curPos}px`
-          mobileCarousel.current.style.transitionDuration = '300ms'
         }
-
-        console.log(mobileCarousel.current.style.left)
 
         setTimeout(() => {
           mobileCarousel.current.style.transitionDuration = '0ms'

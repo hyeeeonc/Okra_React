@@ -1,5 +1,5 @@
-import React, { useState, useCallback } from 'react'
-import { useEffect } from 'react'
+import React from 'react'
+import { Link } from 'react-router-dom'
 import styled from 'styled-components'
 import { useMediaQuery } from 'react-responsive'
 import SecondCarousel from './SecondCarousel'
@@ -35,6 +35,47 @@ const MobileImageGradient = styled.div`
   );
 `
 
+const MobilePartnerSection = styled.section`
+  display: flex;
+  flex-wrap: nowrap;
+  justify-content: space-around;
+  align-items: center;
+  margin-top: 70px;
+`
+
+const MobilePartnerFirstImg = styled.img`
+  max-width: 140px;
+`
+
+const MobilePartnerSecondImg = styled.img`
+  max-width: 100px;
+`
+
+const MobileContactSection = styled.section`
+  display: flex;
+  justify-content: center;
+
+  a {
+    text-decoration: none;
+  }
+`
+
+const MobileContactButton = styled.div`
+  margin-top: 3rem;
+  margin-bottom: 3rem;
+  width: 158px;
+  height: 52px;
+  border-radius: 12px;
+  background-color: #808080;
+
+  color: #181818;
+  text-align: center;
+  line-height: 52px;
+  font-family: 'MICEGothic Bold';
+  font-size: 17px;
+  font-weight: 900;
+`
+
 const MobileIndex = () => {
   const isMobile = useMediaQuery({
     query: '(max-width:767px)',
@@ -48,6 +89,17 @@ const MobileIndex = () => {
       </MobileImageBlock>
 
       <SecondCarousel isMobile={isMobile} />
+
+      <MobilePartnerSection>
+        <MobilePartnerFirstImg src="./images/partners/magicdrug.png" />
+        <MobilePartnerSecondImg src="./images/partners/mycherryclub.png" />
+      </MobilePartnerSection>
+
+      <MobileContactSection>
+        <Link to="/contact">
+          <MobileContactButton>Contact&nbsp;Us</MobileContactButton>
+        </Link>
+      </MobileContactSection>
     </>
   )
 }
