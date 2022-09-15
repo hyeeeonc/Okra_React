@@ -19,6 +19,7 @@ const ContactUsContentsContainer = styled.div`
 
   @media (max-width: 1024px) {
     flex-direction: column;
+    align-items: center;
   }
 `
 
@@ -29,6 +30,7 @@ const ContactUsGoogleMapContainer = styled.div`
   margin-right: 20px;
 
   @media (max-width: 1024px) {
+    margin-right: 0;
     margin-bottom: 40px;
   }
 `
@@ -65,7 +67,7 @@ const ContactUsFormInput = styled.input`
 const ContactUsFormSelect = styled.select`
   width: 100%;
   height: 44px;
-  padding-left: 6px;
+  padding: 0 6px;
   border: 4px solid #e6e6e6;
   margin-bottom: 16px;
 
@@ -76,8 +78,6 @@ const ContactUsFormSelect = styled.select`
   font-size: 1.1rem;
   font-family: MICEGothic;
 `
-
-const ContactUsFormSelectOption = styled.option``
 
 const ContactUsFormTextarea = styled.textarea`
   width: 100%;
@@ -109,6 +109,8 @@ const ContactUsFormButton = styled.button`
 `
 
 const ThirdContactUS = () => {
+  const [touchPos, setToutchPos] = useState({ x: 0, y: 0 })
+
   return (
     <ContactUsBlock id="contactUs">
       <ContactUsContentsContainer>

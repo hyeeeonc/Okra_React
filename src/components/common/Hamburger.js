@@ -1,8 +1,8 @@
-import React, { useEffect, useRef } from "react";
-import styled from "styled-components";
-import { Link } from "react-router-dom";
+import React, { useEffect, useRef } from 'react'
+import styled from 'styled-components'
+import { Link } from 'react-router-dom'
 
-import AudioPlayer from "./Audio";
+import AudioPlayer from './Audio'
 
 const HamburgerContainer = styled.div`
   position: fixed;
@@ -19,7 +19,7 @@ const HamburgerContainer = styled.div`
   @media (min-width: 768px) {
     display: none;
   }
-`;
+`
 
 const HamburgerClicker = styled.div`
   position: fixed;
@@ -30,7 +30,7 @@ const HamburgerClicker = styled.div`
   width: 52px;
   height: 50px;
   z-index: 101;
-`;
+`
 
 const HamburgerCheck = styled.input`
   display: none;
@@ -59,7 +59,7 @@ const HamburgerCheck = styled.input`
   :checked ~ .burger-icon:not(.steps) .burger-sticks:after {
     top: 0;
   }
-`;
+`
 
 const HamburgerCheckIcon = styled.label`
   cursor: pointer;
@@ -68,7 +68,7 @@ const HamburgerCheckIcon = styled.label`
   user-select: none;
   width: auto;
   margin: 0;
-`;
+`
 
 const HamburgerCheckIconSticks = styled.span`
   background: white;
@@ -81,7 +81,7 @@ const HamburgerCheckIconSticks = styled.span`
 
   :before {
     background: white;
-    content: "";
+    content: '';
     height: 100%;
     position: absolute;
     transition: all 0.2s ease-out;
@@ -92,7 +92,7 @@ const HamburgerCheckIconSticks = styled.span`
 
   :after {
     background: white;
-    content: "";
+    content: '';
     height: 100%;
     position: absolute;
     transition: all 0.2s ease-out;
@@ -100,7 +100,7 @@ const HamburgerCheckIconSticks = styled.span`
     border-radius: 2px;
     top: -6px;
   }
-`;
+`
 
 const HamburgerMenu = styled.div`
   position: fixed;
@@ -114,17 +114,17 @@ const HamburgerMenu = styled.div`
   z-index: 30;
   background-color: #4d4d4d;
   opacity: 1;
-`;
+`
 
 const HamburgerMenuItemsWrapper = styled.div`
-  font-family: "MICEGothic";
+  font-family: 'MICEGothic';
   font-style: normal;
   font-weight: 700;
   font-size: 1p6x;
   color: white;
 
   padding: 40px 0 0 20px;
-`;
+`
 
 const HamburgerMenuButtonContainer = styled.div`
   display: flex;
@@ -135,22 +135,22 @@ const HamburgerMenuButtonContainer = styled.div`
   flex: none;
 
   margin-top: 10px;
-`;
+`
 
 const HamburgerMenuButtonYoutube = styled.img`
   width: 36px;
-`;
+`
 
 const HamburgerMenuButtonFB = styled.img`
   width: 33px;
   margin 0 8px;
-`;
+`
 
 const HamburgerMenuButtonInsta = styled.img`
   width: 27px;
-`;
+`
 
-const HamburgerMenuItems = styled.div``;
+const HamburgerMenuItems = styled.div``
 
 const HamburgerMenuLink = styled.div`
   text-decoration: none;
@@ -163,12 +163,12 @@ const HamburgerMenuLink = styled.div`
     text-decoration: none;
     color: white;
   }
-`;
+`
 
 const HamburgerMenuItemsSubMenuContainer = styled.div`
   display: flex;
   flex-direction: column;
-`;
+`
 
 const HamburgerMenuItemsSubMenus = styled(Link)`
   margin-top: 2rem;
@@ -176,32 +176,30 @@ const HamburgerMenuItemsSubMenus = styled(Link)`
 
   text-decoration: none;
 
-  font-family: "MICEGothic";
+  font-family: 'MICEGothic';
   font-style: normal;
   font-weight: 400;
   font-size: 16px;
   color: white;
-`;
+`
 
 const Hamburger = ({ audioPlay, audioPause }) => {
-  const hamburgerClicker = useRef(null);
-  const hamburgerCheck = useRef(null);
-  const hamburgerMenu = useRef(null);
+  const hamburgerClicker = useRef(null)
+  const hamburgerCheck = useRef(null)
+  const hamburgerMenu = useRef(null)
 
   useEffect(() => {
-    hamburgerMenu.current.addEventListener("wheel", (e) => e.preventDefault());
-    hamburgerMenu.current.addEventListener("touchmove", (e) =>
-      e.preventDefault()
-    );
-  }, []);
+    hamburgerMenu.current.addEventListener('wheel', e => e.preventDefault())
+    hamburgerMenu.current.addEventListener('touchmove', e => e.preventDefault())
+  }, [])
 
   const hamburgerClickHandler = () => {
-    hamburgerCheck.current.click();
-  };
+    hamburgerCheck.current.click()
+  }
 
   useEffect(() => {
-    hamburgerClicker.current.addEventListener("click", hamburgerClickHandler);
-  }, []);
+    hamburgerClicker.current.addEventListener('click', hamburgerClickHandler)
+  }, [])
 
   return (
     <HamburgerContainer>
@@ -233,7 +231,7 @@ const Hamburger = ({ audioPlay, audioPause }) => {
 
             <HamburgerMenuItemsSubMenus
               onClick={() => hamburgerClickHandler()}
-              to="/"
+              to="/partner"
             >
               Partners
             </HamburgerMenuItemsSubMenus>
@@ -265,7 +263,7 @@ const Hamburger = ({ audioPlay, audioPause }) => {
         </HamburgerMenuItemsWrapper>
       </HamburgerMenu>
     </HamburgerContainer>
-  );
-};
+  )
+}
 
-export default Hamburger;
+export default Hamburger

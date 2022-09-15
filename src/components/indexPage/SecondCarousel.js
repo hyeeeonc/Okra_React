@@ -67,6 +67,9 @@ const SecondCarousel = ({
   const carousel = useRef(null)
   const prevBtn = useRef(null)
   const nextBtn = useRef(null)
+  const container = document.querySelector('.thumbnail-container')
+
+  const [touchPos, setToutchPos] = useState({ x: 0, y: 0 })
 
   useEffect(() => {
     const carouselSetting = async () => {
@@ -84,10 +87,6 @@ const SecondCarousel = ({
       ${t.thumbnail}
       </div></a>`
       })
-
-      const container = document.querySelector('.thumbnail-container')
-      const length = Number(thumbnails.length)
-
       ;(function addEvent() {
         prevBtn.current.addEventListener(
           'click',
@@ -98,29 +97,56 @@ const SecondCarousel = ({
           translateContainer.bind(this, -1),
         )
       })()
-
-      function translateContainer(direction) {
-        const selectedBtn = direction === 1 ? 'prev' : 'next'
-        container.ontransitionend = () => reorganizeEl(selectedBtn)
-
-        container.style.transitionDuration = '300ms'
-        container.style.transform =
-          direction === 1 ? `translateX(410px)` : `translateX(-410px)`
-      }
-
-      function reorganizeEl(selectedBtn) {
-        container.removeAttribute('style')
-        selectedBtn === 'prev'
-          ? container.insertBefore(
-              container.lastElementChild,
-              container.firstElementChild,
-            )
-          : carousel.current.appendChild(container.firstElementChild)
-      }
     }
 
     carouselSetting()
   })
+
+  /**
+   * 이전/다음 판단하는 함수
+   * @param  direction 방향에 따른 값 전달, 1 = 이전 / -1 = 이후
+   */
+  function translateContainer(direction) {
+    const selectedBtn = direction === 1 ? 'prev' : 'next'
+    container.ontransitionend = () => reorganizeEl(selectedBtn)
+
+    container.style.transitionDuration = '300ms'
+    container.style.transform =
+      direction === 1 ? `translateX(410px)` : `translateX(-410px)`
+  }
+
+  /**
+   * 무핸 캐러셀 유지하는 함수
+   * @param {*} selectedBtn 이전/이후 방향 판단하여 캐러셀 카드 생성
+   */
+  function reorganizeEl(selectedBtn) {
+    container.removeAttribute('style')
+    selectedBtn === 'prev'
+      ? container.insertBefore(
+          container.lastElementChild,
+          container.firstElementChild,
+        )
+      : carousel.current.appendChild(container.firstElementChild)
+  }
+
+  /**
+   * touch 넘기는 핸들러
+   */
+  const touchStart = e => {
+    setToutchPos({
+      x: e.changedTouches[0].pageX,
+      y: e.changedTouches[0].pageY,
+    })
+  }
+
+  const touchEnd = e => {
+    const deltaX = touchPos - e.changedTouches[0].pageX
+    if (deltaX > 30) {
+      translateContainer(-1)
+    } else if (deltaX < -30) {
+      translateContainer(1)
+    }
+  }
 
   return (
     <CarouselBlock
@@ -162,7 +188,7 @@ const SecondCarousel = ({
         </svg>
       </CarouselRightArrow>
 
-      <CarouselWindow>
+      <CarouselWindow onTouchStart={touchStart} onTouchEnd={touchEnd}>
         <CarouselContainer
           className="thumbnail-container"
           ref={carousel}

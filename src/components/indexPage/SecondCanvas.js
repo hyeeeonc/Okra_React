@@ -156,9 +156,11 @@ const SecondCanvas = ({ windowSize, sceneInfo, setSceneInfo, yOffset }) => {
 
       // Canvas에 Image 할당
       if (videoImageCopy[sequence]) {
-        canvasRef.current
-          .getContext('2d')
-          .drawImage(videoImageCopy[sequence], 0, 0)
+        canvasRef.current !== null
+          ? canvasRef.current
+              .getContext('2d')
+              .drawImage(videoImageCopy[sequence], 0, 0)
+          : console.log('unmounted')
       }
 
       // second section 전체 display noen/block 관리
@@ -209,7 +211,7 @@ const SecondCanvas = ({ windowSize, sceneInfo, setSceneInfo, yOffset }) => {
         setPartnersZIndex(-1)
       }
     })
-  }, [canvasRef])
+  }, [])
 
   return (
     <CanvasSectionBlock style={{ height: `${sceneInfo[1].scrollHeight}px` }}>
