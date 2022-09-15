@@ -234,7 +234,7 @@ const Header = ({ audioPlay, audioPause }) => {
       document
         .getElementById('contactUs')
         .scrollIntoView({ behavior: 'smooth' })
-    }, 1)
+    }, 10)
   }
   return (
     <>
