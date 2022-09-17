@@ -1,5 +1,5 @@
 import { Route, Routes } from '../node_modules/react-router-dom/index'
-import React, { useEffect } from 'react'
+import React, { useEffect, useState } from 'react'
 import styled from 'styled-components'
 
 import IndexPage from './pages/IndexPage'
@@ -57,9 +57,38 @@ function App() {
     audio.pause()
   }
 
+  /**
+   * contact us로 라우팅 시 스크롤
+   */
+  const [isContact, setIsContact] = useState(false)
+
+  const ContactUsMover = () => {
+    const target = document.getElementById('contactUs')
+    const targetTop = target.getBoundingClientRect().top
+    setTimeout(function () {
+      target.scrollIntoView({ behavior: 'smooth' })
+    }, 10)
+    if (window.pageXOffset < targetTop) {
+      setTimeout(function () {
+        target.scrollIntoView({ behavior: 'smooth' })
+      }, 10)
+    }
+  }
+
+  useEffect(() => {
+    if (isContact === true) {
+      ContactUsMover()
+      setIsContact(false)
+    }
+  }, [isContact])
+
   return (
     <>
-      <Header audioPlay={audioPlay} audioPause={audioPause} />
+      <Header
+        audioPlay={audioPlay}
+        audioPause={audioPause}
+        setIsContact={setIsContact}
+      />
       <Routes>
         <Route path="/" element={<IndexPage />} />
         <Route path="/okra" element={<OkraPage />} />

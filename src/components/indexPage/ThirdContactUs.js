@@ -38,7 +38,7 @@ const ContactUsGoogleMapContainer = styled.div`
 const ContactUsGoogleMapAddressText = styled.span`
   margin-top: 8px;
   width: 380px;
-  font-size: 13px;
+  font-size: 11px;
   color: #7a7a7a;
   text-align: center;
 `

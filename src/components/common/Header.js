@@ -228,14 +228,7 @@ const HeaderSpacer = styled.div`
   }
 `
 
-const Header = ({ audioPlay, audioPause }) => {
-  const ContactUsMover = () => {
-    setTimeout(function () {
-      document
-        .getElementById('contactUs')
-        .scrollIntoView({ behavior: 'smooth' })
-    }, 10)
-  }
+const Header = ({ audioPlay, audioPause, setIsContact }) => {
   return (
     <>
       <HeaderBlock>
@@ -285,7 +278,7 @@ const Header = ({ audioPlay, audioPause }) => {
  */}
                 <HeaderNavItemsSubMenuItems className="sub-menu-items" to="/">
                   <HeaderNavItemsSubMenuItemsSpan
-                    onClick={() => ContactUsMover()}
+                    onClick={() => setIsContact(true)}
                   >
                     Contact US
                   </HeaderNavItemsSubMenuItemsSpan>

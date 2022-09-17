@@ -57,6 +57,7 @@ const PostHeadThumbContainer = styled.div`
 
   @media (max-width: 500px) {
     margin: 0;
+    margin-left: 10px;
   }
 
   img {
@@ -64,6 +65,10 @@ const PostHeadThumbContainer = styled.div`
 
     @media (max-width: 767px) {
       width: 150px;
+    }
+
+    @media (max-width: 319px) {
+      display: none;
     }
   }
 `
