@@ -31,7 +31,14 @@ const MobileCarouselBlock = styled.article`
 `
 
 const CarouselWindow = styled.div`
-  overflow: hidden;
+  overflow-y: hidden;
+  overflow-x: scroll;
+  -ms-overflow-style: none; /* IE and Edge */
+  scrollbar-width: none; /* Firefox */
+  ::-webkit-scrollbar {
+    display: none; /* Chrome, Safari, Opera*/
+  }
+
   position: relative;
   height: 400px;
   width: 420px;
@@ -156,44 +163,37 @@ const SecondCarousel = ({
         })()
       } else {
         // 모바일 슬라이더 구현
-        const screenWidth = mobileCarousel.current.clientWidth
-
-        mobileCarousel.current.addEventListener('touchstart', e => {
-          startPos = e.touches[0].pageX
-        })
-
-        mobileCarousel.current.addEventListener('touchmove', e => {
-          offset = curPos + e.targetTouches[0].pageX - startPos
-          mobileCarousel.current.style.left = `${offset}px`
-          mobileCarousel.current.style.transitionDuration = '10ms'
-        })
-
-        mobileCarousel.current.addEventListener('touchend', e => {
-          let delta = e.changedTouches[0].pageX - startPos
-          mobileCarousel.current.style.transitionDuration = '300ms'
-          curPos = curPos + delta
-
-          if (e.changedTouches[0].pageX - startPos > 0) {
-            curPos = curPos + delta / 2
-            mobileCarousel.current.style.left = `${curPos}px`
-          } else if (e.changedTouches[0].pageX - startPos < 0) {
-            curPos = curPos + delta / 2
-            mobileCarousel.current.style.left = `${curPos}px`
-          }
-
-          if (curPos > 0) {
-            curPos = 0
-            mobileCarousel.current.style.left = `0px`
-          } else if (curPos < -screenWidth) {
-            curPos = -screenWidth
-
-            mobileCarousel.current.style.left = `${curPos}px`
-          }
-
-          setTimeout(() => {
-            mobileCarousel.current.style.transitionDuration = '0ms'
-          }, 300)
-        })
+        // const screenWidth = mobileCarousel.current.clientWidth
+        // mobileCarousel.current.addEventListener('touchstart', e => {
+        //   startPos = e.touches[0].pageX
+        // })
+        // mobileCarousel.current.addEventListener('touchmove', e => {
+        //   offset = curPos + e.targetTouches[0].pageX - startPos
+        //   mobileCarousel.current.style.left = `${offset}px`
+        //   mobileCarousel.current.style.transitionDuration = '10ms'
+        // })
+        // mobileCarousel.current.addEventListener('touchend', e => {
+        //   let delta = e.changedTouches[0].pageX - startPos
+        //   mobileCarousel.current.style.transitionDuration = '300ms'
+        //   curPos = curPos + delta
+        //   if (e.changedTouches[0].pageX - startPos > 0) {
+        //     curPos = curPos + delta / 2
+        //     mobileCarousel.current.style.left = `${curPos}px`
+        //   } else if (e.changedTouches[0].pageX - startPos < 0) {
+        //     curPos = curPos + delta / 2
+        //     mobileCarousel.current.style.left = `${curPos}px`
+        //   }
+        //   if (curPos > 0) {
+        //     curPos = 0
+        //     mobileCarousel.current.style.left = `0px`
+        //   } else if (curPos < -screenWidth) {
+        //     curPos = -screenWidth
+        //     mobileCarousel.current.style.left = `${curPos}px`
+        //   }
+        //   setTimeout(() => {
+        //     mobileCarousel.current.style.transitionDuration = '0ms'
+        //   }, 300)
+        // })
       }
     }
 
