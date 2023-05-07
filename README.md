@@ -1,8 +1,18 @@
-# Getting Started with Create React App
+<!-- AUTO-GENERATED-CONTENT:START (STARTER) -->
+<h1 align="center">
+  OKRA SEOUL
+</h1>
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+## Description
 
-## Available Scripts
+Festival 주최 OKRA SEOUL 개인 page였으나 deprecated.
+
+스크롤 시 배경이 동영상처럼 움직이는 interaction을 메인 테마로 삼아 작업하였음.
+
+
+<!-- AUTO-GENERATED-CONTENT:END -->
+
+## Available Scripts (React)
 
 In the project directory, you can run:
 
